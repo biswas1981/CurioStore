@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagServices", "BrownBagServices\BrownBagServices.csproj", "{AE59435C-DDC2-49C2-AEAA-FD5444063F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagServices.Tests", "BrownBagServices.Tests\BrownBagServices.Tests.csproj", "{7BFA60D5-92DD-4F40-B19B-35C2BCE7F6B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagService.Model", "BrownBagService.Model\BrownBagService.Model.csproj", "{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagService.Business", "BrownBagService.Business\BrownBagService.Business.csproj", "{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagService.DataAccess", "BrownBagService.DataAccess\BrownBagService.DataAccess.csproj", "{03B5A45F-297D-4B80-95AA-37E243AE3673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownBagService.Utility", "BrownBagService.Utility\BrownBagService.Utility.csproj", "{37065EB5-EC04-46AB-BDD0-30E85DEA7203}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE59435C-DDC2-49C2-AEAA-FD5444063F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE59435C-DDC2-49C2-AEAA-FD5444063F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE59435C-DDC2-49C2-AEAA-FD5444063F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE59435C-DDC2-49C2-AEAA-FD5444063F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFA60D5-92DD-4F40-B19B-35C2BCE7F6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFA60D5-92DD-4F40-B19B-35C2BCE7F6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFA60D5-92DD-4F40-B19B-35C2BCE7F6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFA60D5-92DD-4F40-B19B-35C2BCE7F6B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B5A45F-297D-4B80-95AA-37E243AE3673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B5A45F-297D-4B80-95AA-37E243AE3673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B5A45F-297D-4B80-95AA-37E243AE3673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B5A45F-297D-4B80-95AA-37E243AE3673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37065EB5-EC04-46AB-BDD0-30E85DEA7203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37065EB5-EC04-46AB-BDD0-30E85DEA7203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37065EB5-EC04-46AB-BDD0-30E85DEA7203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37065EB5-EC04-46AB-BDD0-30E85DEA7203}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

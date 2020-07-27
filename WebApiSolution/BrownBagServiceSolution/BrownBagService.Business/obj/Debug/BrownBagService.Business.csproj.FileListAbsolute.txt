@@ -1,0 +1,7 @@
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\bin\Debug\BrownBagService.Business.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\bin\Debug\BrownBagService.Business.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\bin\Debug\BrownBagService.Model.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\bin\Debug\BrownBagService.Model.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\obj\Debug\BrownBagService.Business.csprojResolveAssemblyReference.cache
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\obj\Debug\BrownBagService.Business.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Business\obj\Debug\BrownBagService.Business.pdb

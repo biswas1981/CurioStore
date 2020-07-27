@@ -13,8 +13,6 @@ CREATE TABLE [dbo].[DeviceRegistration](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IMEI_Number] [nvarchar](100) NOT NULL,
 	[AccessToken] [nvarchar](500) NOT NULL,
-	[RefreshToken] [nvarchar](500) NOT NULL,
-	[ExpiryTime] [datetime] NOT NULL,
 	[RefCustomerGuid] [uniqueidentifier] NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreatedOnUtc] [datetime] NOT NULL,

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,15 +41,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\CustomerAttributeServices.cs" />
     <Compile Include="Implementation\CustomerServices.cs" />
+    <Compile Include="Implementation\DeviceRegistrationServices.cs" />
+    <Compile Include="Implementation\EmailConfigServices.cs" />
+    <Compile Include="Implementation\OtpServicescs.cs" />
+    <Compile Include="Implementation\PasswordServices.cs" />
+    <Compile Include="Interfaces\ICustomerAttributeServices.cs" />
     <Compile Include="Interfaces\ICustomerServices.cs" />
+    <Compile Include="Interfaces\IDeviceRegistrationServices.cs" />
+    <Compile Include="Interfaces\IEmailConfigServices.cs" />
+    <Compile Include="Interfaces\IPasswordServices.cs" />
+    <Compile Include="Interfaces\IOtpServicescs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\BrownBagService.DataAccess\BrownBagService.DataAccess.csproj">
+      <Project>{03B5A45F-297D-4B80-95AA-37E243AE3673}</Project>
+      <Name>BrownBagService.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BrownBagService.Model\BrownBagService.Model.csproj">
       <Project>{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}</Project>
       <Name>BrownBagService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BrownBagService.Utility\BrownBagService.Utility.csproj">
+      <Project>{37065EB5-EC04-46AB-BDD0-30E85DEA7203}</Project>
+      <Name>BrownBagService.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

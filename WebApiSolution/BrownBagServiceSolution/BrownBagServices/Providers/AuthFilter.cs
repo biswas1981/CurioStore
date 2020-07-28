@@ -10,6 +10,8 @@ using System.Web.Http.Controllers;
 using System;
 using BrownBagServices.Models;
 using BrownBagServices.Utility;
+using BrownBagService.Business.Interfaces;
+using BrownBagService.Business.Implementation;
 
 namespace BrownBagServices.Providers
 {
@@ -19,6 +21,7 @@ namespace BrownBagServices.Providers
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false)]
     public class AuthFilter : System.Web.Http.AuthorizeAttribute
     {
+        private IDeviceRegistrationServices deviceRegistrationServices;
         /// <summary>
         /// 
         /// </summary>
@@ -33,7 +36,7 @@ namespace BrownBagServices.Providers
         /// </summary>
         public AuthFilter()
         {
-                  
+            deviceRegistrationServices = new DeviceRegistrationServices();
         }
         /// <summary>
         /// 
@@ -59,14 +62,16 @@ namespace BrownBagServices.Providers
                         // get the access token
                         AccessTokenFromRequest = actionContext.Request.Headers.Authorization.Parameter;
                     }
-                    string AccessTokenStored = "";
-                    //string AccessTokenStored = _userService.GetUser(userName)?.AccessToken ?? "";
+                    var tokenTicket = Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(AccessTokenFromRequest);
+                    var deviceId = tokenTicket.Identity.Claims.Where(c => c.Type.StartsWith("deviceId")).FirstOrDefault().Value;
+
+                    string AccessTokenStored = deviceRegistrationServices.GetDeviceByDeviceId(deviceId)?.AccessToken ?? "";
                     if (AccessTokenFromRequest != AccessTokenStored)
                     {                      
                         base.HandleUnauthorizedRequest(actionContext);                       
                     }
                     base.IsAuthorized(actionContext);
-                    AuthorizeRequest(actionContext);
+                    AuthorizeRequest(actionContext, tokenTicket);
                 }
             }
             catch (Exception)
@@ -92,7 +97,7 @@ namespace BrownBagServices.Providers
                    || filterContext.ActionDescriptor.ControllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true).Any();
         }
 
-        private void AuthorizeRequest(HttpActionContext actionContext)
+        private void AuthorizeRequest(HttpActionContext actionContext, AuthenticationTicket tokenTicket)
         {
             string token = string.Empty;
             AuthenticationTicket ticket;
@@ -106,7 +111,8 @@ namespace BrownBagServices.Providers
             }
 
             //your OAuth startup class may be called something else...
-            ticket = Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(token);
+            ticket = tokenTicket;
+            //Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(token);
 
 
             if (ticket == null)

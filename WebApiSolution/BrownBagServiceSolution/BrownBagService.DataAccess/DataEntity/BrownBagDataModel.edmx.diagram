@@ -4,40 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d584985115045bfa501121ae8f2e75f" Name="Diagram1">
-        <EntityTypeShape EntityType="BrownBagModel.Address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Banner" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Category" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Coupon" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Currency" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Customer" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Customer_CustomerRole_Mapping" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.CustomerAttribute" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.CustomerPassword" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.CustomerRole" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.DeviceRegistration" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.EmailConfig" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Enquiry" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Expert" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Manufacturer" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.OrderItem" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Order" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.OrderShipment" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Payment" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Product" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ProductAttribute" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ProductImage" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ProductTier" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Rating" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.RelatedProduct" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ShippingMethod" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ShoppingCartItem" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.SocialMedia" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.TaxCategory" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Vendor" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.Wishlist" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.OrderStatu" Width="1.5" PointX="16.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BrownBagModel.ShippingStatu" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+      <Diagram DiagramId="0ce3ac249dd7437d8a5f38f63e98c5db" Name="Diagram1">
+        <EntityTypeShape EntityType="BrownBagCurioModel.Address" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Banner" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Category" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Coupon" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Currency" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Customer" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Customer_CustomerRole_Mapping" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.CustomerAttribute" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.CustomerPassword" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.CustomerRole" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.DeviceRegistration" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.EmailConfig" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Enquiry" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Expert" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Manufacturer" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.OrderItem" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Order" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.OrderShipment" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.OtpDetail" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Payment" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Product" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ProductAttribute" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ProductImage" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ProductTier" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Rating" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.RelatedProduct" Width="1.5" PointX="10.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ShippingMethod" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ShoppingCartItem" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.SocialMedia" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.TaxCategory" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Vendor" Width="1.5" PointX="16.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Wishlist" Width="1.5" PointX="16.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.OrderStatu" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.ShippingStatu" Width="1.5" PointX="16.75" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

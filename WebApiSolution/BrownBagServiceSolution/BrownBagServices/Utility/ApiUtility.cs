@@ -11,7 +11,7 @@ namespace BrownBagServices.Utility
     {
         public static ApiResponse<T> ApiSuccess<T>(T data)
         {
-            BrownBagLog.log.Info("Ok");
+            
             return new ApiResponse<T>
             {
                 HttpStatus = data != null ? HttpStatusCode.OK : HttpStatusCode.NoContent,

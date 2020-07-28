@@ -43,6 +43,7 @@ namespace BrownBagService.DataAccess.DataEntity
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderShipment> OrderShipments { get; set; }
+        public virtual DbSet<OtpDetail> OtpDetails { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }

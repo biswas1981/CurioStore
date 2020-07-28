@@ -71,3 +71,5 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\N
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.WebHost.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.pdb

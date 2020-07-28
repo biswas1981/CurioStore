@@ -17,8 +17,6 @@ namespace BrownBagService.DataAccess.DataEntity
         public int Id { get; set; }
         public string IMEI_Number { get; set; }
         public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
-        public System.DateTime ExpiryTime { get; set; }
         public Nullable<System.Guid> RefCustomerGuid { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }

@@ -57,3 +57,9 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Model.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.DataAccess.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\EntityFramework.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.DataAccess.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\EntityFramework.xml
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.pdb

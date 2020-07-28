@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BrownBagCurioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BrownBagDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="BrownBagCurioModel.Address" />
+    <EntitySet Name="Banners" EntityType="BrownBagCurioModel.Banner" />
+    <EntitySet Name="Categories" EntityType="BrownBagCurioModel.Category" />
+    <EntitySet Name="Coupons" EntityType="BrownBagCurioModel.Coupon" />
+    <EntitySet Name="Currencies" EntityType="BrownBagCurioModel.Currency" />
+    <EntitySet Name="Customers" EntityType="BrownBagCurioModel.Customer" />
+    <EntitySet Name="Customer_CustomerRole_Mapping" EntityType="BrownBagCurioModel.Customer_CustomerRole_Mapping" />
+    <EntitySet Name="CustomerAttributes" EntityType="BrownBagCurioModel.CustomerAttribute" />
+    <EntitySet Name="CustomerPasswords" EntityType="BrownBagCurioModel.CustomerPassword" />
+    <EntitySet Name="CustomerRoles" EntityType="BrownBagCurioModel.CustomerRole" />
+    <EntitySet Name="DeviceRegistrations" EntityType="BrownBagCurioModel.DeviceRegistration" />
+    <EntitySet Name="EmailConfigs" EntityType="BrownBagCurioModel.EmailConfig" />
+    <EntitySet Name="Enquiries" EntityType="BrownBagCurioModel.Enquiry" />
+    <EntitySet Name="Experts" EntityType="BrownBagCurioModel.Expert" />
+    <EntitySet Name="Manufacturers" EntityType="BrownBagCurioModel.Manufacturer" />
+    <EntitySet Name="OrderItems" EntityType="BrownBagCurioModel.OrderItem" />
+    <EntitySet Name="Orders" EntityType="BrownBagCurioModel.Order" />
+    <EntitySet Name="OrderShipments" EntityType="BrownBagCurioModel.OrderShipment" />
+    <EntitySet Name="OtpDetails" EntityType="BrownBagCurioModel.OtpDetail" />
+    <EntitySet Name="Payments" EntityType="BrownBagCurioModel.Payment" />
+    <EntitySet Name="Products" EntityType="BrownBagCurioModel.Product" />
+    <EntitySet Name="ProductAttributes" EntityType="BrownBagCurioModel.ProductAttribute" />
+    <EntitySet Name="ProductImages" EntityType="BrownBagCurioModel.ProductImage" />
+    <EntitySet Name="ProductTiers" EntityType="BrownBagCurioModel.ProductTier" />
+    <EntitySet Name="Ratings" EntityType="BrownBagCurioModel.Rating" />
+    <EntitySet Name="RelatedProducts" EntityType="BrownBagCurioModel.RelatedProduct" />
+    <EntitySet Name="ShippingMethods" EntityType="BrownBagCurioModel.ShippingMethod" />
+    <EntitySet Name="ShoppingCartItems" EntityType="BrownBagCurioModel.ShoppingCartItem" />
+    <EntitySet Name="SocialMedias" EntityType="BrownBagCurioModel.SocialMedia" />
+    <EntitySet Name="TaxCategories" EntityType="BrownBagCurioModel.TaxCategory" />
+    <EntitySet Name="Vendors" EntityType="BrownBagCurioModel.Vendor" />
+    <EntitySet Name="Wishlists" EntityType="BrownBagCurioModel.Wishlist" />
+    <EntitySet Name="OrderStatus" EntityType="BrownBagCurioModel.OrderStatu" />
+    <EntitySet Name="ShippingStatus" EntityType="BrownBagCurioModel.ShippingStatu" />
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerGUID" Type="Guid" />
+    <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="StreetAddress1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StreetAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BannerURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sequences" Type="Int32" />
+    <Property Name="BannerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BannerLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParentCategoryId" Type="Int32" />
+    <Property Name="PictureUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Published" Type="Int32" />
+    <Property Name="Deleted" Type="Int32" />
+    <Property Name="Display_Order" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="TempPID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerGUID" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Coupon1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CouponOption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CouponValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="DisplayLocale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerGuid" Type="Guid" />
+    <Property Name="Username" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="EmailToRevalidate" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="AdminComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsTaxExempt" Type="Int32" />
+    <Property Name="AffiliateId" Type="Int32" />
+    <Property Name="VendorId" Type="Int32" />
+    <Property Name="HasShoppingCartItems" Type="Int32" />
+    <Property Name="RequireReLogin" Type="Int32" />
+    <Property Name="FailedLoginAttempts" Type="Int32" />
+    <Property Name="CannotLoginUntilDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="Deleted" Type="Int32" />
+    <Property Name="IsSystemAccount" Type="Int32" />
+    <Property Name="SystemName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LastIpAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="LastLoginDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LastActivityDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="RegisteredInStoreId" Type="Int32" />
+    <Property Name="BillingAddress_Id" Type="Int32" />
+    <Property Name="ShippingAddress_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Customer_CustomerRole_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Id" Type="Int32" />
+    <Property Name="CustomerRole_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CustomerAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Id" Type="Guid" />
+    <Property Name="Customer_Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Email" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Phone" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OTP_Verified" Type="Int32" />
+    <Property Name="Customer_Active" Type="Int32" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Created_By" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Modified_Date" Type="DateTime" Precision="3" />
+    <Property Name="Modified_By" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CustomerPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Guid" />
+    <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordFormatId" Type="Int32" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CustomerRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FreeShipping" Type="Int32" />
+    <Property Name="TaxExempt" Type="Int32" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="IsSystemRole" Type="Int32" />
+    <Property Name="SystemName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="EnablePasswordLifetime" Type="Int32" />
+    <Property Name="OverrideTaxDisplayType" Type="Int32" />
+    <Property Name="DefaultTaxDisplayTypeId" Type="Int32" />
+    <Property Name="PurchasedWithProductId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DeviceRegistration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IMEI_Number" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AccessToken" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RefCustomerGuid" Type="Guid" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="EmailConfig">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Host" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Port" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SendEmailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Enquiry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="CustomerName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUTC" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Expert">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Heading" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expert1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Since" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExpertImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManufacturerName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="Published" Type="Int32" />
+    <Property Name="Deleted" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderItemGuid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPriceInclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPriceExclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PriceInclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PriceExclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmountInclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmountExclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderGUID" Type="Guid" />
+    <Property Name="CustomerGUID" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerIP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BillingAddressID" Type="Int32" />
+    <Property Name="ShippingAddressID" Type="Int32" />
+    <Property Name="PickupAddressID" Type="Int32" />
+    <Property Name="OrderStatusId" Type="Int32" />
+    <Property Name="ShippingStatusId" Type="Int32" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerCurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TAXIDNumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="OrderSubtotalInclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OrderSubtotalExclTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OrderDiscount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OrderShippingCharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentMethodAdditionalFee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TaxRates" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OrderTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RefundedAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RewardPointsHistoryEntryId" Type="Int32" />
+    <Property Name="AllowStoringCreditCardNumber" Type="Int32" />
+    <Property Name="CardType" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BankName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardCvv2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardExpirationMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardExpirationYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizationTransactionId" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizationTransactionCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizationTransactionResult" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CaptureTransactionId" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CaptureTransactionResult" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="RefNumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PaidDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="ShippingMethod" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OrderShipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Ordered" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="PickUp" Type="Int32" />
+    <Property Name="PickUpDate" Type="DateTime" Precision="3" />
+    <Property Name="InTransit" Type="Int32" />
+    <Property Name="InTransitDate" Type="DateTime" Precision="3" />
+    <Property Name="Delivered" Type="Int32" />
+    <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+    <Property Name="DeliveryFailed" Type="Int32" />
+    <Property Name="DeliveryFailedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OtpDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RefCustomerGuid" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="OTP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+    <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Prupose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Merchant_Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BASE_URL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Published" Type="Int32" />
+    <Property Name="CP_INR" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CP_USD" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CP_Euro" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CP_GBP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OP_INR" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OP_USD" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OP_Euro" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OP_GBP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PC_INR" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PC_USD" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PC_Euro" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PC_GBP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TaxCategoryId" Type="Int32" />
+    <Property Name="OrderMinimumQuantity" Type="Int32" />
+    <Property Name="OrderMaximumQuantity" Type="Int32" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="NotReturnable" Type="Int32" />
+    <Property Name="IsGiftCard" Type="Int32" />
+    <Property Name="IsRental" Type="Int32" />
+    <Property Name="MarkAsNew" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="ManufacturerID" Type="Int32" />
+    <Property Name="VendorID" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GalleryImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sequences" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductTier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Quantity" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Price_USD" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Price_EURO" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Price_GBP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="CustomerName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Rating1" Type="Double" />
+    <Property Name="ReviewTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Review" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LikeCount" Type="Int32" />
+    <Property Name="DislikeCount" Type="Int32" />
+    <Property Name="ReviewStatus" Type="Int32" />
+    <Property Name="CreatedOnUTC" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RelatedProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ShippingMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShipmentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ShoppingCartItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer_Id" Type="Guid" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Currency" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ProductPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RevisedPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Youtube" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogoURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TaxCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaxCategory1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaxCategoryNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Percentage" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="IsActive" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VendorName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="VendorEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VendorAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="Deleted" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerGUID" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OrderStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderStatus" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShippingStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>

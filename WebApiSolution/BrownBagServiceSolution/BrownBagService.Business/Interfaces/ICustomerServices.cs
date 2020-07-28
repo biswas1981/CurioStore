@@ -9,7 +9,7 @@ namespace BrownBagService.Business.Interfaces
 {
     public interface ICustomerServices
     {
-        bool AddCustomer(Customer customer);
+        bool AddCustomer(CustomerBasicDetails customer);
         bool UpdateCustomer(Customer customer);
         Customer GetCustomer(string userId = "");
     }

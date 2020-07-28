@@ -51,8 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContract\CustomerAttributeContract.cs" />
     <Compile Include="DataContract\BaseDataContract.cs" />
-    <Compile Include="DataContract\DeviceRegistration.cs" />
+    <Compile Include="DataContract\CustomerContract.cs" />
+    <Compile Include="DataContract\DeviceRegisterContract.cs" />
+    <Compile Include="DataContract\EmailConfigContract.cs" />
+    <Compile Include="DataContract\OtpDetailsContract.cs" />
+    <Compile Include="DataContract\PasswordContract.cs" />
     <Compile Include="DataEntity\Address.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
@@ -125,6 +130,9 @@
     <Compile Include="DataEntity\OrderStatu.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntity\OtpDetail.cs">
+      <DependentUpon>BrownBagDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntity\Payment.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
@@ -167,21 +175,33 @@
     <Compile Include="DataEntity\Wishlist.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataInterfaces\ICustomerAttributeContract.cs" />
+    <Compile Include="DataInterfaces\ICoustomerRegistration.cs" />
     <Compile Include="DataInterfaces\IDeviceRegistration.cs" />
+    <Compile Include="DataInterfaces\IEmailConfigContract.cs" />
+    <Compile Include="DataInterfaces\IOtpDetailsContract.cs" />
+    <Compile Include="DataInterfaces\IPasswordContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DataEntity\BrownBagDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BrownBagDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="DataEntity\BrownBagDataModel.edmx.diagram">
       <DependentUpon>BrownBagDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrownBagService.Model\BrownBagService.Model.csproj">
+      <Project>{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}</Project>
+      <Name>BrownBagService.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataEntity\BrownBagDataModel.Context.tt">
@@ -194,15 +214,6 @@
       <DependentUpon>BrownBagDataModel.edmx</DependentUpon>
       <LastGenOutput>BrownBagDataModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BrownBagService.Model\BrownBagService.Model.csproj">
-      <Project>{6B7CB601-0A07-43F7-BEC6-05D0851D2FFF}</Project>
-      <Name>BrownBagService.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

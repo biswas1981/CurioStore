@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BrownBagCurioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGUID" Type="uniqueidentifier" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Country" Type="nvarchar" MaxLength="1000" />
+    <Property Name="StreetAddress1" Type="nvarchar(max)" />
+    <Property Name="StreetAddress2" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannerURL" Type="nvarchar(max)" />
+    <Property Name="Sequences" Type="int" />
+    <Property Name="BannerText" Type="nvarchar(max)" />
+    <Property Name="BannerLink" Type="nvarchar(max)" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="400" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ParentCategoryId" Type="int" />
+    <Property Name="PictureUrl" Type="nvarchar(max)" />
+    <Property Name="Published" Type="int" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="Display_Order" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+    <Property Name="TempPID" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Curio.dbo.CategoryTable' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CategoryTable">
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="CateGoryName" Type="varchar" MaxLength="200" />
+          <Property Name="ParentCategoryId" Type="int" />
+        </EntityType>-->
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGUID" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Coupon" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CouponOption" Type="nvarchar" MaxLength="50" />
+    <Property Name="CouponValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="DisplayLocale" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGuid" Type="uniqueidentifier" />
+    <Property Name="Username" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Email" Type="nvarchar" MaxLength="1000" />
+    <Property Name="EmailToRevalidate" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AdminComment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsTaxExempt" Type="int" />
+    <Property Name="AffiliateId" Type="int" />
+    <Property Name="VendorId" Type="int" />
+    <Property Name="HasShoppingCartItems" Type="int" />
+    <Property Name="RequireReLogin" Type="int" />
+    <Property Name="FailedLoginAttempts" Type="int" />
+    <Property Name="CannotLoginUntilDateUtc" Type="datetime" />
+    <Property Name="Active" Type="int" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="IsSystemAccount" Type="int" />
+    <Property Name="SystemName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="LastIpAddress" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="LastLoginDateUtc" Type="datetime" />
+    <Property Name="LastActivityDateUtc" Type="datetime" />
+    <Property Name="RegisteredInStoreId" Type="int" />
+    <Property Name="BillingAddress_Id" Type="int" />
+    <Property Name="ShippingAddress_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer_CustomerRole_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" />
+    <Property Name="CustomerRole_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_Id" Type="uniqueidentifier" />
+    <Property Name="Customer_Name" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Customer_Email" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Customer_Phone" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Customer_Address" Type="nvarchar(max)" />
+    <Property Name="Customer_Address2" Type="nvarchar(max)" />
+    <Property Name="Customer_Zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="OTP_Verified" Type="int" />
+    <Property Name="Customer_Active" Type="int" />
+    <Property Name="Created_Date" Type="datetime" />
+    <Property Name="Created_By" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Modified_Date" Type="datetime" />
+    <Property Name="Modified_By" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="CustomerPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="uniqueidentifier" />
+    <Property Name="Password" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PasswordFormatId" Type="int" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CustomerRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FreeShipping" Type="int" />
+    <Property Name="TaxExempt" Type="int" />
+    <Property Name="Active" Type="int" />
+    <Property Name="IsSystemRole" Type="int" />
+    <Property Name="SystemName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="EnablePasswordLifetime" Type="int" />
+    <Property Name="OverrideTaxDisplayType" Type="int" />
+    <Property Name="DefaultTaxDisplayTypeId" Type="int" />
+    <Property Name="PurchasedWithProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="DeviceRegistration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMEI_Number" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="AccessToken" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="RefCustomerGuid" Type="uniqueidentifier" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EmailConfig">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" />
+    <Property Name="DisplayName" Type="nvarchar(max)" />
+    <Property Name="Host" Type="nvarchar(max)" />
+    <Property Name="Port" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="SendEmailTo" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Enquiry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Action" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedOnUTC" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Experts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Heading" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Expert" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Since" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="ExpertImage" Type="nvarchar(max)" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManufacturerName" Type="nvarchar" MaxLength="400" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="PictureURL" Type="nvarchar(max)" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="Published" Type="int" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderItemGuid" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitPriceInclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPriceExclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PriceInclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PriceExclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmountInclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmountExclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderGUID" Type="uniqueidentifier" />
+    <Property Name="CustomerGUID" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CustomerIP" Type="nvarchar" MaxLength="1000" />
+    <Property Name="BillingAddressID" Type="int" />
+    <Property Name="ShippingAddressID" Type="int" />
+    <Property Name="PickupAddressID" Type="int" />
+    <Property Name="OrderStatusId" Type="int" />
+    <Property Name="ShippingStatusId" Type="int" />
+    <Property Name="PaymentMethod" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CustomerCurrencyCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="TAXIDNumber" Type="nvarchar" MaxLength="1000" />
+    <Property Name="OrderSubtotalInclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OrderSubtotalExclTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OrderDiscount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OrderShippingCharge" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentMethodAdditionalFee" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TaxRates" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OrderTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RefundedAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RewardPointsHistoryEntryId" Type="int" />
+    <Property Name="AllowStoringCreditCardNumber" Type="int" />
+    <Property Name="CardType" Type="nvarchar" MaxLength="1000" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CardCvv2" Type="nvarchar" MaxLength="50" />
+    <Property Name="CardExpirationMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="CardExpirationYear" Type="nvarchar" MaxLength="50" />
+    <Property Name="AuthorizationTransactionId" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AuthorizationTransactionCode" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AuthorizationTransactionResult" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CaptureTransactionId" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CaptureTransactionResult" Type="nvarchar" MaxLength="1000" />
+    <Property Name="RefNumber" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PaidDateUtc" Type="datetime" />
+    <Property Name="ShippingMethod" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OrderShipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Ordered" Type="int" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="PickUp" Type="int" />
+    <Property Name="PickUpDate" Type="datetime" />
+    <Property Name="InTransit" Type="int" />
+    <Property Name="InTransitDate" Type="datetime" />
+    <Property Name="Delivered" Type="int" />
+    <Property Name="DeliveredDate" Type="datetime" />
+    <Property Name="DeliveryFailed" Type="int" />
+    <Property Name="DeliveryFailedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Curio.dbo.OrderStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderStatus" Type="nchar" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OtpDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefCustomerGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsVerified" Type="bit" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="Prupose" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Merchant_Key" Type="nvarchar" MaxLength="50" />
+    <Property Name="SALT" Type="nvarchar" MaxLength="50" />
+    <Property Name="BASE_URL" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="400" />
+    <Property Name="ShortDescription" Type="nvarchar(max)" />
+    <Property Name="FullDescription" Type="nvarchar(max)" />
+    <Property Name="Published" Type="int" />
+    <Property Name="CP_INR" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CP_USD" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CP_Euro" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CP_GBP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OP_INR" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OP_USD" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OP_Euro" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OP_GBP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PC_INR" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PC_USD" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PC_Euro" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PC_GBP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TaxCategoryId" Type="int" />
+    <Property Name="OrderMinimumQuantity" Type="int" />
+    <Property Name="OrderMaximumQuantity" Type="int" />
+    <Property Name="Stock" Type="int" />
+    <Property Name="NotReturnable" Type="int" />
+    <Property Name="IsGiftCard" Type="int" />
+    <Property Name="IsRental" Type="int" />
+    <Property Name="MarkAsNew" Type="int" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="ManufacturerID" Type="int" />
+    <Property Name="VendorID" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProductAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="ProductDescription" Type="nvarchar(max)" />
+    <Property Name="ProductInformation" Type="nvarchar(max)" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="ImageURL" Type="nvarchar(max)" />
+    <Property Name="ThumbImageURL" Type="nvarchar(max)" />
+    <Property Name="GalleryImageURL" Type="nvarchar(max)" />
+    <Property Name="Sequences" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProductTier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="400" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="Price_USD" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Price_EURO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Price_GBP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Rating" Type="float" />
+    <Property Name="ReviewTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="Review" Type="nvarchar" MaxLength="1000" />
+    <Property Name="LikeCount" Type="int" />
+    <Property Name="DislikeCount" Type="int" />
+    <Property Name="ReviewStatus" Type="int" />
+    <Property Name="CreatedOnUTC" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RelatedProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShippingMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentMethod" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Curio.dbo.ShippingStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ShippingStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ShoppingCartItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_Id" Type="uniqueidentifier" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Currency" Type="nchar" MaxLength="10" />
+    <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RevisedPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Facebook" Type="nvarchar(max)" />
+    <Property Name="Twitter" Type="nvarchar(max)" />
+    <Property Name="Youtube" Type="nvarchar(max)" />
+    <Property Name="Instagram" Type="nvarchar(max)" />
+    <Property Name="LogoURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TaxCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaxCategory" Type="nvarchar(max)" />
+    <Property Name="TaxCategoryNumber" Type="nvarchar(max)" />
+    <Property Name="Percentage" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="IsActive" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Vendors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorName" Type="nvarchar" MaxLength="400" />
+    <Property Name="VendorEmail" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="PictureURL" Type="nvarchar(max)" />
+    <Property Name="VendorAddress" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGUID" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="BrownBagCurioModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer_CustomerRole_Mapping" EntityType="Self.Customer_CustomerRole_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAttribute" EntityType="Self.CustomerAttribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerPassword" EntityType="Self.CustomerPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerRole" EntityType="Self.CustomerRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeviceRegistration" EntityType="Self.DeviceRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailConfig" EntityType="Self.EmailConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enquiry" EntityType="Self.Enquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Experts" EntityType="Self.Experts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderShipment" EntityType="Self.OrderShipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtpDetails" EntityType="Self.OtpDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductAttribute" EntityType="Self.ProductAttribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductTier" EntityType="Self.ProductTier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RelatedProducts" EntityType="Self.RelatedProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShippingMethod" EntityType="Self.ShippingMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShoppingCartItem" EntityType="Self.ShoppingCartItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialMedia" EntityType="Self.SocialMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaxCategory" EntityType="Self.TaxCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OrderStatus].[Id] AS [Id], 
+    [OrderStatus].[OrderStatus] AS [OrderStatus], 
+    [OrderStatus].[Description] AS [Description]
+    FROM [dbo].[OrderStatus] AS [OrderStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ShippingStatus" EntityType="Self.ShippingStatus" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ShippingStatus].[Id] AS [Id], 
+    [ShippingStatus].[Status] AS [Status]
+    FROM [dbo].[ShippingStatus] AS [ShippingStatus]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -19,9 +19,11 @@ namespace BrownBagServices.Controllers
     [RoutePrefix("brownbag/api")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [BrownBagExceptionFilter]
+    [AuthFilter]
     public class BrownBagController : ApiController
     {
         private readonly ICustomerServices _customerServices;
+        private readonly IOtpServicescs _otpServicescs;
         public BrownBagController(ICustomerServices customerServices)
         {
             _customerServices = customerServices;
@@ -29,11 +31,28 @@ namespace BrownBagServices.Controllers
 
         [HttpGet]
         [Route("v{version:apiVersion}/CheckConnection")]
-        [AuthFilter]
         public ApiResponse<bool> CheckConnection()
         {
-           
             return ApiUtility.ApiSuccess<bool>(true);
-        } 
+        }
+
+        [HttpPost]
+        [Route("v{version:apiVersion}/RegisterUser")]
+        [ValidateModel]
+        public ApiResponse<bool> UserRegistration(CustomerBasicDetails customerBasicDetails)
+        {
+            bool isAdded = _customerServices.AddCustomer(customerBasicDetails);
+            return ApiUtility.ApiSuccess<bool>(isAdded);
+        }
+
+        [HttpPost]
+        [Route("v{version:apiVersion}/VerifyOTP")]
+        [ValidateModel]
+        public ApiResponse<bool> VerifyOTP(dynamic otpDetails)
+        {
+            bool isVrified = _otpServicescs.VerifyOTP(otpDetails.OTP, otpDetails.Email);
+            return ApiUtility.ApiSuccess<bool>(isVrified);
+        }
+
     }
 }

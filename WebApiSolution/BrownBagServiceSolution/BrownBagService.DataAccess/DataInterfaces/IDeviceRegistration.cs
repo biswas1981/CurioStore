@@ -9,10 +9,10 @@ namespace BrownBagService.DataAccess.DataInterfaces
 {
     public interface IDeviceRegistration
     {
-        bool AddDeviceRegistration(DeviceRegistrationModel contact);
-        bool EditDeviceRegistration(DeviceRegistrationModel contact);
-        bool DeleteDeviceRegistration(int id);
-        DeviceRegistrationModel GetDeviceRegistrationByDeviceId(string deviceId);
+        bool AddDeviceRegistration(DeviceRegistrationModel device);
+        bool EditDeviceRegistration(DeviceRegistrationModel device);
+        bool DeleteDeviceRegistration(string deviceId);
+        DeviceRegistrationModel GetDeviceByDeviceId(string deviceId);
         
     }
 }

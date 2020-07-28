@@ -5,6 +5,8 @@ using System.Linq;
 using Newtonsoft.Json;
 using System;
 using Microsoft.Owin.Security.OAuth;
+using BrownBagService.Business.Interfaces;
+using BrownBagService.Business.Implementation;
 
 namespace BrownBagServices.Providers
 {
@@ -34,7 +36,7 @@ namespace BrownBagServices.Providers
             await Task.Run(() =>
             {
 
-                context.Validated();
+                var x = context.Validated();
             });
         }
 
@@ -46,10 +48,13 @@ namespace BrownBagServices.Providers
         public override Task TokenEndpointResponse(OAuthTokenEndpointResponseContext context)
         {
 
-
-            //_userService.UpdateAccessToken(context.AdditionalResponseParameters["user_name"].ToString(), context.AccessToken);
-
-            // Save any ref from context to DB
+            IDeviceRegistrationServices deviceServices = new DeviceRegistrationServices();
+            deviceServices.EditDeviceRegistration(new BrownBagService.Model.DeviceRegistrationModel
+            {
+                AccessToken = context.AccessToken,
+                IMEINumber = context.AdditionalResponseParameters["DeviceInformation"].ToString()
+            });
+            
             return base.TokenEndpointResponse(context);
         }
 
@@ -80,20 +85,24 @@ namespace BrownBagServices.Providers
         /// <returns></returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            // context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             try
             {
-                bool isValidUser = false;
-                //Check device exist | if not then register it at DB
                 var deviceId = context.Scope[0];
-               
-
-                isValidUser = true;
+                IDeviceRegistrationServices deviceServices = new DeviceRegistrationServices();
+                var device = deviceServices.GetDeviceByDeviceId(deviceId);
+                if (device == null)
+                {
+                    deviceServices.AddDeviceRegistration(new BrownBagService.Model.DeviceRegistrationModel
+                    {
+                        AccessToken = "-",
+                        CustomerGuid = "",
+                        IsActive = true,
+                        IMEINumber = deviceId
+                    });
+                }
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim("deviceId", deviceId));
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Mobile"));
-
-
                 //----------------------------------------------------------
                 context.Validated(identity);
             }
@@ -102,15 +111,6 @@ namespace BrownBagServices.Providers
                 throw ex;
             }
         }
-
-
-
-
-
-
-
-
-
 
     }
 }

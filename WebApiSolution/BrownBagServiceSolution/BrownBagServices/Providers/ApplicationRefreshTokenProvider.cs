@@ -53,7 +53,6 @@ namespace BrownBagServices.Providers
         public async Task ReceiveAsync(AuthenticationTokenReceiveContext context)
         {
             AuthenticationTicket ticket;
-
             if (_refreshTokens.TryRemove(context.Token, out ticket))
             {
                 context.SetTicket(ticket);

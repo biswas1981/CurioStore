@@ -26,7 +26,7 @@ namespace BrownBagService.Business.Implementation
                     OtpDetailsModel.ExpiryDate = DateTime.Now.AddMinutes(30).ToUniversalTime();
                     OtpDetailsModel.IsVerified = false;
                     OtpDetailsModel.IsActive = true;
-                    OtpDetailsModel.Prupose = "RegisterUser";
+                    
                     if (otp == null)
                     {
                         Random rng = new Random();

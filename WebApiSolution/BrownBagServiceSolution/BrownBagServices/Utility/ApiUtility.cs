@@ -11,11 +11,12 @@ namespace BrownBagServices.Utility
     {
         public static ApiResponse<T> ApiSuccess<T>(T data)
         {
-            
+
             return new ApiResponse<T>
             {
                 HttpStatus = data != null ? HttpStatusCode.OK : HttpStatusCode.NoContent,
-                ResponseData = data
+                ResponseData = data,
+                ErrorData = null
             };
         }
         public static ApiResponse<T> ApiError<T>(Exception ex)
@@ -24,7 +25,8 @@ namespace BrownBagServices.Utility
             return new ApiResponse<T>
             {
                 HttpStatus = HttpStatusCode.InternalServerError,
-                ResponseData = default(T)
+                ResponseData = default(T),
+                ErrorData = ex
             };
         }
         public static ApiResponse<T> ApiBadRequest<T>(string trace)
@@ -33,7 +35,8 @@ namespace BrownBagServices.Utility
             return new ApiResponse<T>
             {
                 HttpStatus = HttpStatusCode.BadRequest,
-                ResponseData = default(T)
+                ResponseData = default(T),
+                ErrorData = trace
             };
         }
     }

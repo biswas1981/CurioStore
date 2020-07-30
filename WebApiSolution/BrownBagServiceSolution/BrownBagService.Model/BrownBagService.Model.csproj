@@ -45,6 +45,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="DeviceRegistrationModel.cs" />
     <Compile Include="EmailConfigModel.cs" />
+    <Compile Include="OtpBodyModel.cs" />
     <Compile Include="OtpDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,5 +12,8 @@ namespace BrownBagService.Business.Interfaces
         bool AddCustomer(CustomerBasicDetails customer);
         bool UpdateCustomer(Customer customer);
         Customer GetCustomer(string userId = "");
+        CustomerSummary GetCustomerSummaryByEmail(string email);
+        bool ChangeCustomerPassword(string deviceId, string password, string email);
+        bool CustomerLogIn(string deviceId, string password, string email);
     }
 }

@@ -15,7 +15,7 @@ namespace BrownBagServices.Utility
         {
             var container = new UnityContainer();
             container.RegisterType<ICustomerServices, CustomerServices>();
-
+            container.RegisterType<IOtpServicescs, OtpServicescs>();
             return container;
         }
     }

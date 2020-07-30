@@ -1,0 +1,4 @@
+ERROR 2020-07-29 00:20:32,316 [(null), (null), 9, (null)] BrownBagServices.Utility.BrownBagLog - Please Enter Valid Mobile Number.
+ERROR 2020-07-29 00:21:01,439 [(null), (null), 9, (null)] BrownBagServices.Utility.BrownBagLog - Email already found
+ERROR 2020-07-29 00:21:18,688 [(null), (null), 12, (null)] BrownBagServices.Utility.BrownBagLog - Please Enter Valid Mobile Number.
+ERROR 2020-07-29 00:21:30,534 [(null), (null), 9, (null)] BrownBagServices.Utility.BrownBagLog - Invalid Email Address|Please Enter Valid Mobile Number.

@@ -46,12 +46,26 @@ namespace BrownBagService.Utility
 
         private static AlternateView Mail_Body(string mailBody)
         {
+            AlternateView AV =
+           AlternateView.CreateAlternateViewFromString(mailBody, null, MediaTypeNames.Text.Html);
+
             string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/Resource/otp.png");
             LinkedResource Img = new LinkedResource(path, MediaTypeNames.Image.Jpeg);
             Img.ContentId = "MyImage"; 
-            AlternateView AV =
-            AlternateView.CreateAlternateViewFromString(mailBody, null, MediaTypeNames.Text.Html);
+           
+
+            string twitterpath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/Resource/tw.gif");
+            LinkedResource twitterImg = new LinkedResource(twitterpath, MediaTypeNames.Image.Jpeg);
+            twitterImg.ContentId = "twitterImage";
+
+            string facebookpath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/Resource/fb.gif");
+            LinkedResource facebookImg = new LinkedResource(facebookpath, MediaTypeNames.Image.Jpeg);
+            facebookImg.ContentId = "facebookImage";
+
+
             AV.LinkedResources.Add(Img);
+            AV.LinkedResources.Add(twitterImg);
+            AV.LinkedResources.Add(facebookImg);
             return AV;
         }
         private static string PopulateBody(string otp)

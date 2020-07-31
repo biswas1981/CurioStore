@@ -165,6 +165,9 @@
   <ItemGroup>
     <Content Include="App_Data\otpTemplate.html" />
     <Content Include="Global.asax" />
+    <Content Include="Resource\fb.gif" />
+    <Content Include="Resource\otp.png" />
+    <Content Include="Resource\tw.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +196,7 @@
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\PublishProfiles\CurioWeb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,9 +204,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resource\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BrownBagService.Business\BrownBagService.Business.csproj">
       <Project>{19EFF291-8DBA-4E3B-ACC6-8CE9D912E0AB}</Project>

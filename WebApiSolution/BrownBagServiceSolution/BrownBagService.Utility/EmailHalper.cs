@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BrownBagService.Utility
 {
@@ -22,6 +24,7 @@ namespace BrownBagService.Utility
                 mm.Subject = "OTP";
                 mm.Body = body;
                 mm.IsBodyHtml = true;
+                mm.AlternateViews.Add(Mail_Body(body));
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = host; //Gmail
                 smtp.EnableSsl = true;
@@ -38,6 +41,18 @@ namespace BrownBagService.Utility
             {
                 throw;
             }
+        }
+
+
+        private static AlternateView Mail_Body(string mailBody)
+        {
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/Resource/otp.png");
+            LinkedResource Img = new LinkedResource(path, MediaTypeNames.Image.Jpeg);
+            Img.ContentId = "MyImage"; 
+            AlternateView AV =
+            AlternateView.CreateAlternateViewFromString(mailBody, null, MediaTypeNames.Text.Html);
+            AV.LinkedResources.Add(Img);
+            return AV;
         }
         private static string PopulateBody(string otp)
         {

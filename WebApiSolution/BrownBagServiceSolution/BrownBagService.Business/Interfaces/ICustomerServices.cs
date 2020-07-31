@@ -15,5 +15,6 @@ namespace BrownBagService.Business.Interfaces
         CustomerSummary GetCustomerSummaryByEmail(string email);
         bool ChangeCustomerPassword(string deviceId, string password, string email);
         bool CustomerLogIn(string deviceId, string password, string email);
+        bool CustomerLogOff(string deviceId);
     }
 }

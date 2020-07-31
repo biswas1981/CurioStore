@@ -100,8 +100,28 @@ namespace BrownBagService.Business.Implementation
                     string encryptedPassword = CryptorEngine.Encrypt(password, true);
                     if (!string.IsNullOrEmpty(deviceId) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
                     {
-                        return dataContract.ChangeCustomerPassword(deviceId.Trim(), encryptedPassword, "");
+                        return dataContract.CustomerLogIn(deviceId.Trim(), encryptedPassword, email);
                     }                   
+                    return false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public bool CustomerLogOff(string deviceId)
+        {
+            try
+            {
+                using (var dataContract = new CustomerContract())
+                {
+                    
+                    if (!string.IsNullOrEmpty(deviceId) )
+                    {
+                        return dataContract.CustomerLogOff(deviceId.Trim());
+                    }
                     return false;
                 }
             }

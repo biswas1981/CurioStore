@@ -25,5 +25,6 @@ namespace BrownBagService.DataAccess.DataEntity
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
         public string TempPID { get; set; }
+        public Nullable<int> RootCategory { get; set; }
     }
 }

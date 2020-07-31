@@ -37,6 +37,7 @@
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="BrownBagCurioModel.Category">
         <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="RootCategory" ColumnName="RootCategory" />
           <ScalarProperty Name="TempPID" ColumnName="TempPID" />
           <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
           <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />

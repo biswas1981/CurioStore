@@ -82,6 +82,7 @@
     <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
     <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
     <Property Name="TempPID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RootCategory" Type="Int32" />
   </EntityType>
   <EntityType Name="Coupon">
     <Key>

@@ -69,8 +69,11 @@ namespace BrownBagService.DataAccess.DataContract
                     var customerData = dataContext.Customers.Where(a => a.Email == email).ToList();
                     if (customerData != null && customerData.Count() > 0)
                     {
+                        var otherData = dataContext.CustomerAttributes.Where(a => a.Customer_Email == email).FirstOrDefault();
                         customerSummary.IsVerifiedCustomer = customerData.Where(a => a.Email == email && a.Active == 1).Count() > 0 ? true : false;
-                        customerSummary.CustomerName = dataContext.CustomerAttributes.Where(a => a.Customer_Email == email).FirstOrDefault().Customer_Name ?? "";
+                        customerSummary.CustomerName = otherData.Customer_Name ?? "";
+                        customerSummary.CustomerEmail = otherData.Customer_Email ?? "";
+                        customerSummary.CustomerContactNumber = otherData.Customer_Phone ?? "";
                         customerSummary.CustomerId = customerData.FirstOrDefault().CustomerGuid.Value;
                     }
                     else
@@ -138,7 +141,7 @@ namespace BrownBagService.DataAccess.DataContract
                         if (customerData != null)
                         {
                             var passwordData = dataContext.CustomerPasswords.Where(a => a.Password == password && a.CustomerId == customerData.CustomerGuid).FirstOrDefault();
-                            if (deviceData != null && passwordData!=null)
+                            if (deviceData != null && passwordData != null)
                             {
                                 isLogin = true;
                                 deviceData.RefCustomerGuid = customerData.CustomerGuid;
@@ -148,6 +151,34 @@ namespace BrownBagService.DataAccess.DataContract
                     isLogin = dataContext.SaveChanges() > 0 ? true : false;
                 }
                 return isLogin;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public bool CustomerLogOff(string deviceId)
+        {
+            try
+            {
+                bool isLogOff = false;
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    if (!string.IsNullOrEmpty(deviceId))
+                    {
+                        var deviceData = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceId).FirstOrDefault();
+                        if (deviceData != null)
+                        {
+                            isLogOff = true;
+                            deviceData.RefCustomerGuid = null;
+                            deviceData.UpdatedOnUtc = DateTime.Now.ToUniversalTime();
+                        }
+
+                    }
+                    isLogOff = dataContext.SaveChanges() > 0 ? true : false;
+                }
+                return isLogOff;
             }
             catch
             {

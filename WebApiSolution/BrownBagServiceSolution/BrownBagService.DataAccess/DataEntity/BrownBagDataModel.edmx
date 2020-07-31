@@ -51,6 +51,7 @@
           <Property Name="CreatedOnUtc" Type="datetime" />
           <Property Name="UpdatedOnUtc" Type="datetime" />
           <Property Name="TempPID" Type="nvarchar(max)" />
+          <Property Name="RootCategory" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'Curio.dbo.CategoryTable' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -664,6 +665,7 @@ warning 6002: The table/view 'Curio.dbo.ShippingStatus' does not have a primary 
           <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="TempPID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RootCategory" Type="Int32" />
         </EntityType>
         <EntityType Name="Coupon">
           <Key>
@@ -1175,6 +1177,7 @@ warning 6002: The table/view 'Curio.dbo.ShippingStatus' does not have a primary 
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="BrownBagCurioModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="RootCategory" ColumnName="RootCategory" />
                 <ScalarProperty Name="TempPID" ColumnName="TempPID" />
                 <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />

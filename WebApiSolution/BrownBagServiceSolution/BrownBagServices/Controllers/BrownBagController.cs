@@ -3,11 +3,6 @@ using BrownBagService.Business.Interfaces;
 using BrownBagServices.Filters;
 using BrownBagServices.Models;
 using BrownBagServices.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Microsoft.Web.Http;
@@ -24,15 +19,17 @@ namespace BrownBagServices.Controllers
     {
         private readonly ICustomerServices _customerServices;
         private readonly IOtpServicescs _otpServicescs;
-        public BrownBagController(ICustomerServices customerServices)
+        public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs)
         {
             _customerServices = customerServices;
+            _otpServicescs = otpServicescs;
         }
 
         [HttpGet]
         [Route("v{version:apiVersion}/CheckConnection")]
         public ApiResponse<bool> CheckConnection()
         {
+            
             return ApiUtility.ApiSuccess<bool>(true);
         }
 
@@ -55,11 +52,26 @@ namespace BrownBagServices.Controllers
         [HttpPost]
         [Route("v{version:apiVersion}/LogIn")]
         [ValidateModel]
-        public ApiResponse<bool> LogIn(LogInModel logInModel)
+        public ApiResponse<dynamic> LogIn(LogInModel logInModel)
         {
             var deviceNo = Request.Properties["deviceIdentity"].ToString();
-            var isLogin = _customerServices.CustomerLogIn(deviceNo, logInModel.Password, logInModel.Email);            
-            return ApiUtility.ApiSuccess<bool>(isLogin);
+            var customerSummary = new CustomerSummary();
+            var isLogin = _customerServices.CustomerLogIn(deviceNo.Trim(), logInModel.Password.Trim(), logInModel.Email.Trim());
+            if (isLogin)
+            {
+                customerSummary =_customerServices.GetCustomerSummaryByEmail(logInModel.Email.Trim());
+            }       
+            return ApiUtility.ApiSuccess<dynamic>(new { IsLogin= isLogin, CustomerSummary= customerSummary });
+        }
+
+        [HttpGet]
+        [Route("v{version:apiVersion}/LogOff")]
+        [ValidateModel]
+        public ApiResponse<bool> LogOff()
+        {
+            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var isLogOff = _customerServices.CustomerLogOff(deviceNo);
+            return ApiUtility.ApiSuccess<bool>(isLogOff);
         }
 
 
@@ -100,7 +112,7 @@ namespace BrownBagServices.Controllers
         [Route("v{version:apiVersion}/VerifyOTP")]
         public ApiResponse<bool> VerifyOTP(dynamic otpDetails)
         {
-            bool isVrified = _otpServicescs.VerifyOTP(otpDetails.OTP, otpDetails.Email);
+            bool isVrified = _otpServicescs.VerifyOTP(otpDetails.OTP.Value, otpDetails.Email.Value);
             return ApiUtility.ApiSuccess<bool>(isVrified);
         }
 

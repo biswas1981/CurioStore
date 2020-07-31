@@ -1,12 +1,12 @@
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.DataAccess.dll.config
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.DataAccess.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.DataAccess.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.csprojResolveAssemblyReference.cache
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.DataAccess.dll.config
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.Model.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\EntityFramework.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\BrownBagService.Model.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\EntityFramework.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.csprojResolveAssemblyReference.cache
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.DataAccess\obj\Debug\BrownBagService.DataAccess.pdb

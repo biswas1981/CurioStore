@@ -1,4 +1,3 @@
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.csprojResolveAssemblyReference.cache
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\roslyn\csc.exe
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -43,6 +42,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\S
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.WebHost.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Abstractions.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Container.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Business.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Model.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Utility.pdb
@@ -69,7 +69,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\U
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Container.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Newtonsoft.Json.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.WebHost.xml
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.csprojResolveAssemblyReference.cache
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.pdb

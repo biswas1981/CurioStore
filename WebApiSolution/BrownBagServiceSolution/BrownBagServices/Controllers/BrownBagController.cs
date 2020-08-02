@@ -28,6 +28,10 @@ namespace BrownBagServices.Controllers
             _bannerServices = bannerServices;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/CheckConnection")]
         public ApiResponse<bool> CheckConnection()

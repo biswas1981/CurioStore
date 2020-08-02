@@ -20,7 +20,9 @@ namespace BrownBagServices
         /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
+            
             var config = new HttpConfiguration();
+            SwaggerConfig.Register(config);
             ConfigureOAuth(app);
             WebApiConfig.Register(config);
             app.UseCors(CorsOptions.AllowAll);

@@ -73,3 +73,6 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\B
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.csprojResolveAssemblyReference.cache
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Web.Infrastructure.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Swashbuckle.Core.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\WebActivatorEx.dll

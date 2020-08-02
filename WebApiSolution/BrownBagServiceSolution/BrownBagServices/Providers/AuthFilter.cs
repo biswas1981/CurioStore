@@ -101,19 +101,15 @@ namespace BrownBagServices.Providers
         {
             string token = string.Empty;
             AuthenticationTicket ticket;
-
             token = (actionContext.Request.Headers.Any(x => x.Key == "Authorization")) ? actionContext.Request.Headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value.SingleOrDefault().Replace("Bearer ", "") : "";
-
             if (token == string.Empty)
             {
                 actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Header"));
                 return;
             }
-
             //your OAuth startup class may be called something else...
             ticket = tokenTicket;
             //Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(token);
-
 
             if (ticket == null)
             {

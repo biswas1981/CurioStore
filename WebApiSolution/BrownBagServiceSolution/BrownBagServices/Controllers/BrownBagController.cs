@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Microsoft.Web.Http;
 using BrownBagServices.Providers;
+using System.Collections.Generic;
 
 namespace BrownBagServices.Controllers
 {
@@ -19,10 +20,12 @@ namespace BrownBagServices.Controllers
     {
         private readonly ICustomerServices _customerServices;
         private readonly IOtpServicescs _otpServicescs;
-        public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs)
+        private readonly IBannerServices _bannerServices;
+        public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs, IBannerServices bannerServices)
         {
             _customerServices = customerServices;
             _otpServicescs = otpServicescs;
+            _bannerServices = bannerServices;
         }
 
         [HttpGet]
@@ -66,7 +69,6 @@ namespace BrownBagServices.Controllers
 
         [HttpGet]
         [Route("v{version:apiVersion}/LogOff")]
-        [ValidateModel]
         public ApiResponse<bool> LogOff()
         {
             var deviceNo = Request.Properties["deviceIdentity"].ToString();
@@ -134,7 +136,23 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<bool>(isSaved);
         }
 
+        [HttpGet]
+        [Route("v{version:apiVersion}/GetBanners")]
+        [CacheWebApi(Duration = 30)]
+        public ApiResponse<List<BannerModel>> GetBanners()
+        {
+            var banners = _bannerServices.GetAllBanners();
+            return ApiUtility.ApiSuccess<List<BannerModel>>(banners);
+        }
 
+        [HttpGet]
+        [Route("v{version:apiVersion}/GetFeaturedProducts")]
+        [CacheWebApi(Duration = 30)]
+        public ApiResponse<List<BannerModel>> GetFeaturedProducts()
+        {
+            var banners = _bannerServices.GetAllBanners();
+            return ApiUtility.ApiSuccess<List<BannerModel>>(banners);
+        }
 
     }
 }

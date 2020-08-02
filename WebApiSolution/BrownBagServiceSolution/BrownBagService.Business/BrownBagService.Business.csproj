@@ -41,18 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\BannerServices.cs" />
     <Compile Include="Implementation\CustomerAttributeServices.cs" />
     <Compile Include="Implementation\CustomerServices.cs" />
     <Compile Include="Implementation\DeviceRegistrationServices.cs" />
     <Compile Include="Implementation\EmailConfigServices.cs" />
     <Compile Include="Implementation\OtpServicescs.cs" />
     <Compile Include="Implementation\PasswordServices.cs" />
+    <Compile Include="Implementation\ProductServices.cs" />
+    <Compile Include="Interfaces\IBannerServices.cs" />
     <Compile Include="Interfaces\ICustomerAttributeServices.cs" />
     <Compile Include="Interfaces\ICustomerServices.cs" />
     <Compile Include="Interfaces\IDeviceRegistrationServices.cs" />
     <Compile Include="Interfaces\IEmailConfigServices.cs" />
     <Compile Include="Interfaces\IPasswordServices.cs" />
     <Compile Include="Interfaces\IOtpServicescs.cs" />
+    <Compile Include="Interfaces\IProductServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

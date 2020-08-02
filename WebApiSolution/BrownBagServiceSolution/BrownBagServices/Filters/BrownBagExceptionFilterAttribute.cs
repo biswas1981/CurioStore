@@ -15,7 +15,7 @@ namespace BrownBagServices.Filters
         {
             if (context.Exception is Exception)
             {
-                context.Response = context.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, new ApiResponse<bool> { HttpStatus = HttpStatusCode.InternalServerError, ResponseData = default(bool) });
+                context.Response = context.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, new ApiResponse<bool> { HttpStatus = HttpStatusCode.InternalServerError, ResponseData = default(bool), ErrorData= context.Exception.Message });
             }
         }
     }

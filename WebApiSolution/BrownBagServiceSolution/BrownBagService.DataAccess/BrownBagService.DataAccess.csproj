@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContract\BannerContract.cs" />
     <Compile Include="DataContract\CustomerAttributeContract.cs" />
     <Compile Include="DataContract\BaseDataContract.cs" />
     <Compile Include="DataContract\CustomerContract.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="DataEntity\Wishlist.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataInterfaces\IBannerContract.cs" />
     <Compile Include="DataInterfaces\ICustomerAttributeContract.cs" />
     <Compile Include="DataInterfaces\ICoustomerRegistration.cs" />
     <Compile Include="DataInterfaces\IDeviceRegistration.cs" />

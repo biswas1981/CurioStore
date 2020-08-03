@@ -21,11 +21,13 @@ namespace BrownBagServices.Controllers
         private readonly ICustomerServices _customerServices;
         private readonly IOtpServicescs _otpServicescs;
         private readonly IBannerServices _bannerServices;
-        public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs, IBannerServices bannerServices)
+        private readonly IProductServices _productServices;
+        public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs, IBannerServices bannerServices, IProductServices productServices)
         {
             _customerServices = customerServices;
             _otpServicescs = otpServicescs;
             _bannerServices = bannerServices;
+            _productServices = productServices;
         }
 
         /// <summary>
@@ -150,12 +152,33 @@ namespace BrownBagServices.Controllers
         }
 
         [HttpGet]
-        [Route("v{version:apiVersion}/GetFeaturedProducts")]
+        [Route("v{version:apiVersion}/GetFeaturedProducts/{currencyName}")]
         [CacheWebApi(Duration = 30)]
-        public ApiResponse<List<BannerModel>> GetFeaturedProducts()
+        public ApiResponse<List<ProductSummaryModel>> GetFeaturedProducts(CurrencyTypeName currencyName)
         {
-            var banners = _bannerServices.GetAllBanners();
-            return ApiUtility.ApiSuccess<List<BannerModel>>(banners);
+            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var products = _productServices.GetFeaturedProducts(currencyName, deviceNo);
+            return ApiUtility.ApiSuccess<List<ProductSummaryModel>>(products);
+        }
+
+
+        [HttpPost]
+        [Route("v{version:apiVersion}/GetAllProducts")]
+        [CacheWebApi(Duration = 30)]
+        public ApiResponse<ProductDetailsSummaryModel> GetAllProducts(SearchProductModel search)
+        {
+            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var products = _productServices.GetAllProducts(search, deviceNo);
+            return ApiUtility.ApiSuccess<ProductDetailsSummaryModel>(products);
+        }
+
+        [HttpGet]
+        [Route("v{version:apiVersion}/GetRootCategories/{currencyName}")]
+        [CacheWebApi(Duration = 30)]
+        public ApiResponse<List<RootCategoryModel>> GetRootCategories()
+        {
+            var categories = _productServices.GetRootCategories();
+            return ApiUtility.ApiSuccess<List<RootCategoryModel>>(categories);
         }
 
     }

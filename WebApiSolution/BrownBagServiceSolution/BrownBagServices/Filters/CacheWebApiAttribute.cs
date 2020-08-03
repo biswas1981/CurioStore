@@ -16,7 +16,7 @@ namespace BrownBagServices.Filters
             {
                 MaxAge = TimeSpan.FromMinutes(Duration),
                 MustRevalidate = true,
-                Private = true
+                Private = true  
             };
         }
     }

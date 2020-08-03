@@ -2,3 +2,4 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Utilit
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Utility\bin\Debug\BrownBagService.Utility.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Utility\obj\Debug\BrownBagService.Utility.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Utility\obj\Debug\BrownBagService.Utility.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagService.Utility\obj\Debug\BrownBagService.Utility.csprojResolveAssemblyReference.cache

@@ -9,6 +9,6 @@ namespace BrownBagService.DataAccess.DataInterfaces
 {
     public interface ICustomerAttributeContract
     {
-        bool AddNewAddress(CustomerAttribute customerAddress);
+        bool AddNewAddress(CustomerDetailAttribute customerAddress);
     }
 }

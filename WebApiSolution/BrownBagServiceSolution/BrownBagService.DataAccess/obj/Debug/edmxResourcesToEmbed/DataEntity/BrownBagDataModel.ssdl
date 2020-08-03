@@ -19,6 +19,17 @@
     <Property Name="CreatedOnUtc" Type="datetime" />
     <Property Name="UpdatedOnUtc" Type="datetime" />
   </EntityType>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Artists" Type="nvarchar" MaxLength="400" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="PictureURL" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="int" />
+    <Property Name="CreatedOnUtc" Type="datetime" />
+  </EntityType>
   <EntityType Name="Banner">
     <Key>
       <PropertyRef Name="Id" />
@@ -218,6 +229,19 @@ warning 6013: The table/view 'Curio.dbo.CategoryTable' does not have a primary k
     <Property Name="CreatedOnUtc" Type="datetime" />
     <Property Name="UpdatedOnUtc" Type="datetime" />
   </EntityType>
+  <EntityType Name="Filter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrimaryCategory" Type="nvarchar" MaxLength="100" />
+    <Property Name="RootCategory" Type="int" />
+    <Property Name="Category" Type="int" />
+    <Property Name="Artists" Type="int" />
+    <Property Name="Manufacturer" Type="int" />
+    <Property Name="Vendors" Type="int" />
+    <Property Name="UpdatedOnUtc" Type="datetime" />
+  </EntityType>
   <EntityType Name="Manufacturer">
     <Key>
       <PropertyRef Name="Id" />
@@ -382,6 +406,8 @@ warning 6002: The table/view 'Curio.dbo.OrderStatus' does not have a primary key
     <Property Name="VendorID" Type="int" />
     <Property Name="CreatedOnUtc" Type="datetime" />
     <Property Name="UpdatedOnUtc" Type="datetime" />
+    <Property Name="ArtistID" Type="int" />
+    <Property Name="IsExclusive" Type="int" />
   </EntityType>
   <EntityType Name="ProductAttribute">
     <Key>
@@ -529,6 +555,7 @@ warning 6002: The table/view 'Curio.dbo.ShippingStatus' does not have a primary 
   </EntityType>
   <EntityContainer Name="BrownBagCurioModelStoreContainer">
     <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Artists" EntityType="Self.Artists" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
@@ -542,6 +569,7 @@ warning 6002: The table/view 'Curio.dbo.ShippingStatus' does not have a primary 
     <EntitySet Name="EmailConfig" EntityType="Self.EmailConfig" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Enquiry" EntityType="Self.Enquiry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Experts" EntityType="Self.Experts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Filter" EntityType="Self.Filter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />

@@ -39,6 +39,8 @@
         <EntityTypeShape EntityType="BrownBagCurioModel.Wishlist" Width="1.5" PointX="16.75" PointY="8.75" />
         <EntityTypeShape EntityType="BrownBagCurioModel.OrderStatu" Width="1.5" PointX="16.75" PointY="12.75" />
         <EntityTypeShape EntityType="BrownBagCurioModel.ShippingStatu" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Artist" Width="1.5" PointX="5.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BrownBagCurioModel.Filter" Width="1.5" PointX="0.75" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

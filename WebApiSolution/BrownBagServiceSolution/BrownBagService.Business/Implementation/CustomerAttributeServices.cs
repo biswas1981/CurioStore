@@ -17,7 +17,7 @@ namespace BrownBagService.Business.Implementation
             {
                 using (var dataAddressContract = new CustomerAttributeContract())
                 {
-                  return  dataAddressContract.AddNewAddress(new CustomerAttribute {  Customer_Id = customerId,  Customer_Name = customer.FirstName.Trim() +" "+ customer.LastName.Trim(),  Customer_Phone = customer.PhoneNumber, Customer_Email= customer.Email, Customer_Active=1 });
+                  return  dataAddressContract.AddNewAddress(new CustomerDetailAttribute {  Customer_Id = customerId,  Customer_Name = customer.FirstName.Trim() +" "+ customer.LastName.Trim(),  Customer_Phone = customer.PhoneNumber, Customer_Email= customer.Email, Customer_Active=1 });
                 }
             }
             catch

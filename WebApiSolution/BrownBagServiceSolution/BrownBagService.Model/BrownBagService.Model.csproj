@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BannerModel.cs" />
-    <Compile Include="CustomerAttribute.cs" />
+    <Compile Include="CustomerDetailAttribute.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DeviceRegistrationModel.cs" />
     <Compile Include="EmailConfigModel.cs" />

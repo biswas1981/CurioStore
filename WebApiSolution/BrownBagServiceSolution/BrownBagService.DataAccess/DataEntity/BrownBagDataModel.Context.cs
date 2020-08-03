@@ -59,5 +59,7 @@ namespace BrownBagService.DataAccess.DataEntity
         public virtual DbSet<Wishlist> Wishlists { get; set; }
         public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<ShippingStatu> ShippingStatus { get; set; }
+        public virtual DbSet<Artist> Artists { get; set; }
+        public virtual DbSet<Filter> Filters { get; set; }
     }
 }

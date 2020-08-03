@@ -45,5 +45,7 @@ namespace BrownBagService.DataAccess.DataEntity
         public Nullable<int> VendorID { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
+        public Nullable<int> ArtistID { get; set; }
+        public Nullable<int> IsExclusive { get; set; }
     }
 }

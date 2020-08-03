@@ -17,6 +17,7 @@ namespace BrownBagServices.Utility
             container.RegisterType<ICustomerServices, CustomerServices>();
             container.RegisterType<IOtpServicescs, OtpServicescs>();
             container.RegisterType<IBannerServices, BannerServices>();
+            container.RegisterType<IProductServices, ProductServices>();
             return container;
         }
     }

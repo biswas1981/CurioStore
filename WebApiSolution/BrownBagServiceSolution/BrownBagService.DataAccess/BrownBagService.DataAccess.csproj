@@ -59,7 +59,11 @@
     <Compile Include="DataContract\EmailConfigContract.cs" />
     <Compile Include="DataContract\OtpDetailsContract.cs" />
     <Compile Include="DataContract\PasswordContract.cs" />
+    <Compile Include="DataContract\ProductContract.cs" />
     <Compile Include="DataEntity\Address.cs">
+      <DependentUpon>BrownBagDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\Artist.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\Banner.cs">
@@ -114,6 +118,9 @@
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\Expert.cs">
+      <DependentUpon>BrownBagDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntity\Filter.cs">
       <DependentUpon>BrownBagDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntity\Manufacturer.cs">
@@ -183,6 +190,7 @@
     <Compile Include="DataInterfaces\IEmailConfigContract.cs" />
     <Compile Include="DataInterfaces\IOtpDetailsContract.cs" />
     <Compile Include="DataInterfaces\IPasswordContract.cs" />
+    <Compile Include="DataInterfaces\IProductContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

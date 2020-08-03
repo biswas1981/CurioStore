@@ -11,7 +11,7 @@ namespace BrownBagService.DataAccess.DataContract
 {
     public class CustomerAttributeContract : BaseDataContract, ICustomerAttributeContract
     {
-        public bool AddNewAddress(Model.CustomerAttribute customerAddress)
+        public bool AddNewAddress(Model.CustomerDetailAttribute customerAddress)
         {
             try
             {

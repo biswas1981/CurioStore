@@ -12,5 +12,6 @@ namespace BrownBagService.Business.Interfaces
         List<ProductSummaryModel> GetFeaturedProducts(CurrencyTypeName currencyTypeName, string deviceNo);
         ProductDetailsSummaryModel GetAllProducts(SearchProductModel search, string deviceNo);
         List<RootCategoryModel> GetRootCategories();
+        ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName);
     }
 }

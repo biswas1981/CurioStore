@@ -15,5 +15,6 @@ namespace BrownBagService.DataAccess.DataInterfaces
         List<ArtistsModel> GetFilterArtists(List<ProductSummaryModel> products);
         List<VendorsModel> GetFilterVendors(List<ProductSummaryModel> products);
         List<RootCategoryModel> GetRootCategories();
+        ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName);
     }
 }

@@ -67,7 +67,32 @@ namespace BrownBagService.Business.Implementation
 
 
 
-
+        public ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName)
+        {
+            try
+            {
+                System.Configuration.AppSettingsReader settingsReader = new AppSettingsReader();
+                string host = (string)settingsReader.GetValue("WebHostName", typeof(String));
+                using (var productContract = new ProductContract())
+                {
+                    var product = productContract.GetProductDetails(productId, currencyTypeName);
+                    if (product != null && product.ProductImages != null && product.ProductImages.Count() > 0)
+                    {
+                        product.ProductImages.ForEach(y =>
+                        {
+                            y.GalleryImageURL = y.GalleryImageURL.Replace("..", host);
+                            y.ImageURL = y.ImageURL.Replace("..", host);
+                            y.ThumbImageURL = y.ThumbImageURL.Replace("..", host);
+                        });
+                    }
+                    return product;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
 
         public ProductDetailsSummaryModel GetAllProducts(SearchProductModel search, string deviceNo)
@@ -96,22 +121,37 @@ namespace BrownBagService.Business.Implementation
                         });
                     });
 
-                    objProduct.FilterCategories.ForEach(x =>
+                    if (objProduct.FilterCategories != null)
                     {
-                        x.PictureUrl = x.PictureUrl.Replace("..", host);
-                    });
-                    objProduct.FilterBrands.ForEach(x =>
+                        objProduct.FilterCategories.ForEach(x =>
+                        {
+                            x.PictureUrl = x.PictureUrl.Replace("..", host);
+                        });
+                    }
+
+                    if (objProduct.FilterBrands != null)
                     {
-                        x.PictureURL = x.PictureURL.Replace("..", host);
-                    });
-                    objProduct.FilterArtists.ForEach(x =>
+                        objProduct.FilterBrands.ForEach(x =>
+                        {
+                            x.PictureURL = x.PictureURL.Replace("..", host);
+                        });
+                    }
+
+                    if (objProduct.FilterArtists != null)
                     {
-                        x.PictureURL = x.PictureURL.Replace("..", host);
-                    });
-                    objProduct.FilterVendors.ForEach(x =>
+                        objProduct.FilterArtists.ForEach(x =>
+                        {
+                            x.PictureURL = x.PictureURL.Replace("..", host);
+                        });
+                    }
+
+                    if (objProduct.FilterVendors != null)
                     {
-                        x.PictureURL = x.PictureURL.Replace("..", host);
-                    });
+                        objProduct.FilterVendors.ForEach(x =>
+                        {
+                            x.PictureURL = x.PictureURL.Replace("..", host);
+                        });
+                    }
 
                     return objProduct;
                 }

@@ -27,6 +27,39 @@ namespace BrownBagService.Model
 
     }
 
+    public class SocialMediaModel
+    {
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string Youtube { get; set; }
+        public string Instagram { get; set; }
+    }
+
+    public class ProductDetailsModel : ProductSummaryModel
+    {
+        public string ShippingReturns { get; set; }
+        public string ProductInformation { get; set; }
+        public string CategoryName { get; set; }
+        public string VendorName { get; set; }
+        public string ArtistName { get; set; }
+        public string BrandName { get; set; }
+        public List<ProductRatingModel> Reviewes { get; set; }
+        public List<SocialMediaModel> SocialMedias { get; set; }
+
+    }
+
+    public class ProductRatingModel
+    {
+        public int Id { get; set; }
+        public int ProductID { get; set; }
+        public string CustomerName { get; set; }
+        public double Rating { get; set; }
+        public string ReviewTitle { get; set; }
+        public string ReviewText { get; set; }
+        public int LikeCount { get; set; }
+        public int DislikeCount { get; set; }
+    }
+
     public class ProductDetailsSummaryModel
     {
         public List<ProductSummaryModel> ProductList { get; set; }
@@ -80,7 +113,7 @@ namespace BrownBagService.Model
         public string PictureUrl { get; set; }
         public int DisplayOrder { get; set; }
         public string RootTree { get; set; }
-        
+
     }
 
     public class CategoryModel : BaseCategoryModel

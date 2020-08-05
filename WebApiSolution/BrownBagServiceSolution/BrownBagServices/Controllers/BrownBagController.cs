@@ -181,5 +181,14 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<List<RootCategoryModel>>(categories);
         }
 
+        [HttpGet]
+        [Route("v{version:apiVersion}/GetProductdetails/{productId}/{CurrencyName}")]
+        [CacheWebApi(Duration = 30)]
+        public ApiResponse<ProductDetailsModel> GetProductdetails(int productId, CurrencyTypeName CurrencyName)
+        {
+            var product = _productServices.GetProductDetails(productId, CurrencyName);
+            return ApiUtility.ApiSuccess<ProductDetailsModel>(product);
+        }
+
     }
 }

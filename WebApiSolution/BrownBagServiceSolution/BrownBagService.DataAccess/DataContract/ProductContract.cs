@@ -66,7 +66,83 @@ namespace BrownBagService.DataAccess.DataContract
             }
         }
 
+        public ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName)
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var ratings = dataContext.Ratings.Where(a => a.ProductID == productId && a.ReviewStatus == 1).ToList();
+                    ratings.ForEach(a =>
+                    {
+                        if (a.CustomerName.Trim() == "Gaust")
+                        {
+                            a.CustomerName = "";
+                        }
+                    });
+                    var productInfo = dataContext.ProductAttributes.Where(a => a.ProductID == productId).ToList();
 
+                    var products = dataContext.Products
+                         .Where(w => w.Id == productId).AsEnumerable()
+                         .Select(s => new ProductDetailsModel
+                         {
+                             Id = s.Id,
+                             CategoryId = s.CategoryID ?? 0,
+                             ManufacturerId = s.ManufacturerID ?? 0,
+                             ArtistId = s.ArtistID ?? 0,
+                             VendorId = s.VendorID ?? 0,
+                             CurrencyType = currencyTypeName.ToString(),
+                             FullDescription = s.FullDescription ?? "",
+                             ProductName = s.ProductName ?? "",
+                             ShortDescription = s.ShortDescription ?? "",
+                             Discount = s.Discount ?? 0,
+                             Stock = s.Stock ?? 0,
+                             Price = (currencyTypeName == CurrencyTypeName.INR) ? s.CP_INR ?? 0 : (currencyTypeName == CurrencyTypeName.USD) ? s.CP_USD ?? 0 : (currencyTypeName == CurrencyTypeName.EURO) ? s.CP_Euro ?? 0 : s.CP_GBP ?? 0,
+                             ProductImages = dataContext.ProductImages.Where(x => x.ProductID == s.Id).Select(s1 => new Model.ProductImage
+                             {
+                                 Id = s1.Id,
+                                 GalleryImageURL = s1.GalleryImageURL,
+                                 ImageURL = s1.ImageURL,
+                                 ThumbImageURL = s1.ThumbImageURL,
+                                 Sequences = s1.Sequences ?? 0
+                             }).OrderBy(o => o.Sequences).ToList(),
+
+                             Rating = (ratings != null && ratings.Count() > 0) ? ratings.Select(s2 => s2.Rating1 ?? 0).Average() : 0,
+                             ReviewCount = (ratings != null && ratings.Count() > 0) ? ratings.Where(s3 => s3.CustomerName != "").Count() : 0,
+                             Reviewes = (ratings != null && ratings.Count() > 0) ? ratings.Where(s3 => s3.CustomerName != "").Select(s3 => new ProductRatingModel
+                             {
+                                 CustomerName = s3.CustomerName ?? "",
+                                 DislikeCount = s3.DislikeCount ?? 0,
+                                 Id = s3.Id,
+                                 LikeCount = s3.LikeCount ?? 0,
+                                 ProductID = s3.ProductID ?? 0,
+                                 Rating = s3.Rating1 ?? 0,
+                                 ReviewText = s3.Review ?? "",
+                                 ReviewTitle = s3.ReviewTitle ?? ""
+                             }).ToList() : new List<ProductRatingModel>(),
+                             BrandName = dataContext.Manufacturers.Where(s4 => s4.Id == (s.ManufacturerID ?? 0)).Select(s4 => s4.ManufacturerName).FirstOrDefault() ?? "",
+                             ArtistName = dataContext.Artists.Where(s4 => s4.Id == (s.ArtistID ?? 0)).Select(s4 => s4.Artists).FirstOrDefault() ?? "",
+                             VendorName = dataContext.Vendors.Where(s4 => s4.Id == (s.VendorID ?? 0)).Select(s4 => s4.VendorName).FirstOrDefault() ?? "",
+                             CategoryName = dataContext.Categories.Where(s4 => s4.Id == (s.CategoryID ?? 0)).Select(s4 => s4.Name).FirstOrDefault() ?? "",
+                             ProductInformation = (productInfo != null && productInfo.Count() > 0) ? productInfo.Select(s4 => s4.ProductInformation).FirstOrDefault() ?? "" : "",
+                             ShippingReturns = "We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our Delivery information We hope you’ll love every purchase,but if you ever need to return an item you can do so within a month of receipt.For full details of how to make a return, please view our Returns information",
+                             SocialMedias = dataContext.SocialMedias.Select(s4 => new SocialMediaModel
+                             {
+                                 Facebook = s4.Facebook ?? "",
+                                 Instagram = s4.Instagram ?? "",
+                                 Twitter = s4.Twitter ?? "",
+                                 Youtube = s4.Youtube ?? ""
+                             }).ToList()
+                         })
+                        .ToList();
+                    return products.FirstOrDefault();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         public List<RootCategoryModel> GetRootCategories()
         {

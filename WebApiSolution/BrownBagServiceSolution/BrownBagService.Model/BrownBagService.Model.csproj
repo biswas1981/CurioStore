@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BannerModel.cs" />
+    <Compile Include="CartCalculationModel.cs" />
     <Compile Include="CustomerDetailAttribute.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DeviceRegistrationModel.cs" />

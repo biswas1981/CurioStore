@@ -11,6 +11,6 @@ namespace BrownBagServices.Models
         public HttpStatusCode HttpStatus { get; set; }
         public T ResponseData { get; set; }
         public dynamic ErrorData { get; set; }
-
+        public string Message { get; set; }
     }
 }

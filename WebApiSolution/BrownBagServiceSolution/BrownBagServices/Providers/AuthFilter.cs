@@ -86,7 +86,7 @@ namespace BrownBagServices.Providers
         /// <param name="actionContext"></param>
         protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
         {
-            actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Role"));
+            actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Role", "Invalid User Role"));
         }
 
         private bool SkipAuthorization(HttpActionContext filterContext)
@@ -104,7 +104,7 @@ namespace BrownBagServices.Providers
             token = (actionContext.Request.Headers.Any(x => x.Key == "Authorization")) ? actionContext.Request.Headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value.SingleOrDefault().Replace("Bearer ", "") : "";
             if (token == string.Empty)
             {
-                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Header"));
+                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Header","Invalid Header/Token not present"));
                 return;
             }
             //your OAuth startup class may be called something else...
@@ -113,7 +113,7 @@ namespace BrownBagServices.Providers
 
             if (ticket == null)
             {
-                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Token"));
+                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Token", "Invalid token value"));
                 return;
             }
 
@@ -122,7 +122,7 @@ namespace BrownBagServices.Providers
                 DateTime expiresAt = DateTime.Parse(ticket.Identity.Claims.Where(c => c.Type.StartsWith("expires_at")).FirstOrDefault().Value);
                 if (DateTime.Now > expiresAt)
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Token"));
+                    actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Token", "Invalid token value"));
                     return;
                 }
             }
@@ -135,7 +135,7 @@ namespace BrownBagServices.Providers
                     var userAgent = string.Join(" ", headers);
                     if (tokenUserAgent != userAgent)
                     {
-                        actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Agent"));
+                        actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Agent", "Invalid agent value"));
                         return;
                     }
                 }

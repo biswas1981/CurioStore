@@ -3,7 +3,9 @@ using BrownBagService.DataAccess.DataInterfaces;
 using BrownBagService.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,6 +67,27 @@ namespace BrownBagService.DataAccess.DataContract
                 throw;
             }
         }
+
+
+        public List<ProductBasicModel> GetProductSuggestions()
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    return dataContext.Products.Where(w => (w.Published ?? 0) == 1).Select(s => new ProductBasicModel
+                    {
+                        Id = s.Id,
+                        ProductName = s.ProductName ?? ""
+                    }).ToList();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         public ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName)
         {
@@ -285,6 +308,293 @@ namespace BrownBagService.DataAccess.DataContract
             }
         }
 
+        public bool AddToWishList(int productId, CurrencyTypeName currencyTypeName, string deviceNumber)
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var product = dataContext.Products.Where(a => a.Id == productId).FirstOrDefault();
+                        if (product != null)
+                        {
+                            var itemPrice = (currencyTypeName == CurrencyTypeName.INR) ? product.CP_INR ?? 0 : (currencyTypeName == CurrencyTypeName.USD) ? product.CP_USD ?? 0 : (currencyTypeName == CurrencyTypeName.EURO) ? product.CP_Euro ?? 0 : product.CP_GBP ?? 0;
+                            Wishlist wishlistItem = new Wishlist
+                            {
+                                CreatedOnUtc = DateTime.Now.ToUniversalTime(),
+                                UpdatedOnUtc = DateTime.Now.ToUniversalTime(),
+                                Currency = currencyTypeName.ToString(),
+                                CustomerGUID = userInfo.RefCustomerGuid.Value.ToString(),
+                                ProductID = productId,
+                                ProductPrice = itemPrice
+                            };
+                            dataContext.Wishlists.Add(wishlistItem);
+                            return dataContext.SaveChanges() > 0 ? true : false;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public bool RemoveFromWishList(int productId, string deviceNumber)
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var product = dataContext.Products.Where(a => a.Id == productId).FirstOrDefault();
+                        if (product != null)
+                        {
+                            var item = dataContext.Wishlists.Where(a => a.ProductID == productId && a.CustomerGUID == userInfo.RefCustomerGuid.Value.ToString()).FirstOrDefault();
+                            if (item != null)
+                            {
+                                dataContext.Wishlists.Remove(item);
+                                return dataContext.SaveChanges() > 0 ? true : false;
+                            }
+                            return false;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public List<WishListItem> ShowWishListItems(string deviceNumber)
+        {
+            try
+            {
+                List<WishListItem> items = new List<WishListItem>();
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var wishListItems = dataContext.Wishlists.Where(a => a.CustomerGUID == userInfo.RefCustomerGuid.ToString()).ToList();
+                        if (wishListItems != null && wishListItems.Count() > 0)
+                        {
+                            wishListItems.ForEach(x =>
+                            {
+                                var product = dataContext.Products.Where(a => a.Id == x.ProductID).FirstOrDefault();
+                                if (product != null)
+                                {
+                                    items.Add(new WishListItem
+                                    {
+                                        CurrencyType = x.Currency ?? "",
+                                        Price = x.ProductPrice ?? 0,
+                                        ProductId = x.ProductID ?? 0,
+                                        ProductName = product.ProductName ?? "",
+                                        Stock = product.Stock ?? 0,
+                                        StockStatus = (product.Stock ?? 0) > 1 ? StockStatus.InStock.GetDescription() : (product.Stock ?? 0) == 1 ? StockStatus.LowStock.GetDescription() : StockStatus.OutOfStock.GetDescription(),
+                                        ProductImages = dataContext.ProductImages.Where(b => b.ProductID == product.Id).Select(s => new Model.ProductImage
+                                        {
+                                            Id = s.Id,
+                                            GalleryImageURL = s.GalleryImageURL ?? "",
+                                            ImageURL = s.ImageURL ?? "",
+                                            Sequences = s.Sequences ?? 0,
+                                            ThumbImageURL = s.ThumbImageURL ?? ""
+                                        }).ToList()
+                                    });
+                                }
+                            });
+                            return items;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber)
+        {
+
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var product = dataContext.Products.Where(a => a.Id == productId).FirstOrDefault();
+                        if (product != null)
+                        {
+                            if (product.Stock > 0)
+                            {
+                                var itemPrice = (currencyTypeName == CurrencyTypeName.INR) ? product.CP_INR ?? 0 : (currencyTypeName == CurrencyTypeName.USD) ? product.CP_USD ?? 0 : (currencyTypeName == CurrencyTypeName.EURO) ? product.CP_Euro ?? 0 : product.CP_GBP ?? 0;
+                                ShoppingCartItem cartItem = new ShoppingCartItem
+                                {
+                                    CreatedOnUtc = DateTime.Now.ToUniversalTime(),
+                                    UpdatedOnUtc = DateTime.Now.ToUniversalTime(),
+                                    Currency = currencyTypeName.ToString(),
+                                    Customer_Id = userInfo.RefCustomerGuid.Value,
+                                    ProductId = productId,
+                                    ProductPrice = itemPrice,
+                                    Quantity = 1,
+                                    RevisedPrice = 0
+                                };
+                                dataContext.ShoppingCartItems.Add(cartItem);
+                                return dataContext.SaveChanges() > 0 ? true: false;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveFromCart(int productId, string deviceNumber)
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var product = dataContext.Products.Where(a => a.Id == productId).FirstOrDefault();
+                        if (product != null)
+                        {
+                            var item = dataContext.ShoppingCartItems.Where(a => a.ProductId == productId && a.Customer_Id == userInfo.RefCustomerGuid.Value).FirstOrDefault();
+                            if (item != null)
+                            {
+                                dataContext.ShoppingCartItems.Remove(item);
+                                return dataContext.SaveChanges() > 0 ? true : false;
+                            }
+                            return false;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public CartItemSummary ShowCartItems(string deviceNumber)
+        {
+            try
+            {
+                var items = new List<CartItemDetails>();
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var userInfo = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNumber).FirstOrDefault();
+                    if (userInfo != null && userInfo.RefCustomerGuid != null)
+                    {
+                        var cartListItems = dataContext.ShoppingCartItems.Where(a => a.Customer_Id == userInfo.RefCustomerGuid).ToList();
+                        if (cartListItems != null && cartListItems.Count() > 0)
+                        {
+                            cartListItems.ForEach(x =>
+                            {
+                                var product = dataContext.Products.Where(a => a.Id == x.ProductId).FirstOrDefault();
+                                if (product != null)
+                                {
+                                    items.Add(new CartItemDetails
+                                    {
+                                        CurrencyType = x.Currency ?? "",
+                                        Price = x.ProductPrice ?? 0,
+                                        ProductId = x.ProductId ?? 0,
+                                        ProductName = product.ProductName ?? "",
+                                        Stock = product.Stock ?? 0,
+                                        StockStatus = (product.Stock ?? 0) > 1 ? StockStatus.InStock.GetDescription() : (product.Stock ?? 0) == 1 ? StockStatus.LowStock.GetDescription() : StockStatus.OutOfStock.GetDescription(),
+                                        ProductImages = dataContext.ProductImages.Where(b => b.ProductID == product.Id).Select(s => new Model.ProductImage
+                                        {
+                                            Id = s.Id,
+                                            GalleryImageURL = s.GalleryImageURL ?? "",
+                                            ImageURL = s.ImageURL ?? "",
+                                            Sequences = s.Sequences ?? 0,
+                                            ThumbImageURL = s.ThumbImageURL ?? ""
+                                        }).ToList()
+                                    });
+                                }
+                            });
+                            return new CartItemSummary
+                            {
+                                CartItems = items,
+                                CartCalculation = CalculateCartPrice(items, userInfo.RefCustomerGuid.Value, dataContext)
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         private bool CheckExclusiveUser(BrownBagDataEntities dataContext, string deviceNo)
         {
             bool IsExclusiveUser = false;
@@ -299,5 +609,33 @@ namespace BrownBagService.DataAccess.DataContract
             }
             return IsExclusiveUser;
         }
+
+        private CartCalculationModel CalculateCartPrice(List<CartItemDetails> items, Guid customerId, BrownBagDataEntities dataContext)
+        {
+            var taxHead = dataContext.TaxCategories.Where(x => x.IsActive.Value == 1).Select(s => new TaxComponant
+            {
+                TaxHeadId = s.Id,
+                TaxHeadName = s.TaxCategory1,
+                TaxPercentage = s.Percentage ?? 0
+            }).ToList();
+            var shippingValueRate = 0.05M;
+            var subTotalPrice = items.Sum(s => s.Price);
+            var totalTax = taxHead.Sum(s => (s.TaxPercentage / 100) * subTotalPrice);
+            var shippingValue = subTotalPrice * shippingValueRate;
+            var discount = 0;
+            var calculation = new CartCalculationModel
+            {
+                Discount = 0,
+                SubTotal = subTotalPrice,
+                TaxHeads = taxHead,
+                TaxTotal = totalTax,
+                ShippingValue = shippingValue,
+                TotalAmount = subTotalPrice + totalTax + shippingValue - discount
+            };
+            return calculation;
+        }
+
+
+
     }
 }

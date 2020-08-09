@@ -38,8 +38,7 @@ namespace BrownBagServices.Controllers
         [Route("v{version:apiVersion}/CheckConnection")]
         public ApiResponse<bool> CheckConnection()
         {
-            
-            return ApiUtility.ApiSuccess<bool>(true);
+            return ApiUtility.ApiSuccess<bool>(true, "Checked");
         }
 
         [HttpGet]
@@ -49,39 +48,34 @@ namespace BrownBagServices.Controllers
             var customerSummary = _customerServices.GetCustomerSummaryByEmail(email.Trim());
             if (customerSummary != null)
             {
-                return ApiUtility.ApiSuccess<dynamic>(new { VerifiedCustomerFound = customerSummary.IsVerifiedCustomer, IsNewCustomer = false });
+                return ApiUtility.ApiSuccess<dynamic>(new { VerifiedCustomerFound = customerSummary.IsVerifiedCustomer, IsNewCustomer = false }, "This email already present for an existing customer");
             }
             else
             {
-                return ApiUtility.ApiSuccess<dynamic>(new { VerifiedCustomerFound = false, IsNewCustomer = true });
+                return ApiUtility.ApiSuccess<dynamic>(new { VerifiedCustomerFound = false, IsNewCustomer = true }, "Not found any existing customer");
             }
         }
-
 
         [HttpPost]
         [Route("v{version:apiVersion}/LogIn")]
         [ValidateModel]
         public ApiResponse<dynamic> LogIn(LogInModel logInModel)
         {
-            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var deviceNo = GetDeviceNo();
             var customerSummary = new CustomerSummary();
             var isLogin = _customerServices.CustomerLogIn(deviceNo.Trim(), logInModel.Password.Trim(), logInModel.Email.Trim());
-            if (isLogin)
-            {
-                customerSummary =_customerServices.GetCustomerSummaryByEmail(logInModel.Email.Trim());
-            }       
-            return ApiUtility.ApiSuccess<dynamic>(new { IsLogin= isLogin, CustomerSummary= customerSummary });
+            customerSummary = _customerServices.GetCustomerSummaryByEmail(logInModel.Email.Trim());
+            return ApiUtility.ApiSuccess<dynamic>(new { IsLogin = isLogin, CustomerSummary = customerSummary }, isLogin ? "Loging successfully" : "Failed !!! Incorrect Email or Password");
         }
 
         [HttpGet]
         [Route("v{version:apiVersion}/LogOff")]
         public ApiResponse<bool> LogOff()
         {
-            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var deviceNo = GetDeviceNo();
             var isLogOff = _customerServices.CustomerLogOff(deviceNo);
-            return ApiUtility.ApiSuccess<bool>(isLogOff);
+            return ApiUtility.ApiSuccess<bool>(isLogOff, isLogOff ? "Logoff successfully" : "Failed !!!");
         }
-
 
         [HttpPost]
         [Route("v{version:apiVersion}/SendOtp")]
@@ -96,7 +90,7 @@ namespace BrownBagServices.Controllers
                 CustomerName = summary.CustomerName,
                 RefCustomerGuid = summary.CustomerId
             });
-            return ApiUtility.ApiSuccess<bool>(isSend);
+            return ApiUtility.ApiSuccess<bool>(isSend, isSend ? "OTP send successfully" : "Failed !!!");
         }
 
         [HttpPost]
@@ -105,14 +99,14 @@ namespace BrownBagServices.Controllers
         public ApiResponse<bool> UserRegistration(CustomerBasicDetails customerBasicDetails)
         {
             var customerSummary = _customerServices.GetCustomerSummaryByEmail(customerBasicDetails.Email);
-            if (customerSummary == null || (customerSummary != null && customerSummary.IsVerifiedCustomer))
+            if (customerSummary == null)
             {
                 bool isAdded = _customerServices.AddCustomer(customerBasicDetails);
-                return ApiUtility.ApiSuccess<bool>(isAdded);
+                return ApiUtility.ApiSuccess<bool>(isAdded, isAdded ? "New customer added successfully" : "Failed !!!");
             }
             else
             {
-                return ApiUtility.ApiBadRequest<bool>("Email already found");
+                return ApiUtility.ApiSuccess<bool>(false, "Email already found");
             }
         }
 
@@ -121,7 +115,7 @@ namespace BrownBagServices.Controllers
         public ApiResponse<bool> VerifyOTP(dynamic otpDetails)
         {
             bool isVrified = _otpServicescs.VerifyOTP(otpDetails.OTP.Value, otpDetails.Email.Value);
-            return ApiUtility.ApiSuccess<bool>(isVrified);
+            return ApiUtility.ApiSuccess<bool>(isVrified, isVrified ? "OTP varified successfully" : "Failed !!!");
         }
 
         [HttpPost]
@@ -132,14 +126,14 @@ namespace BrownBagServices.Controllers
             var isSaved = false;
             if (customerChangePassword.IsForgetPassword == false)
             {
-                var deviceNo = Request.Properties["deviceIdentity"].ToString();
+                var deviceNo = GetDeviceNo();
                 isSaved = _customerServices.ChangeCustomerPassword(deviceNo, customerChangePassword.NewPassword, "");
             }
             else
             {
                 isSaved = _customerServices.ChangeCustomerPassword("", customerChangePassword.NewPassword, customerChangePassword.Email);
             }
-            return ApiUtility.ApiSuccess<bool>(isSaved);
+            return ApiUtility.ApiSuccess<bool>(isSaved, isSaved ? "Password saved successfully" : "Failed !!!");
         }
 
         [HttpGet]
@@ -148,7 +142,7 @@ namespace BrownBagServices.Controllers
         public ApiResponse<List<BannerModel>> GetBanners()
         {
             var banners = _bannerServices.GetAllBanners();
-            return ApiUtility.ApiSuccess<List<BannerModel>>(banners);
+            return ApiUtility.ApiSuccess<List<BannerModel>>(banners, "Banners listing successfully");
         }
 
         [HttpGet]
@@ -156,9 +150,9 @@ namespace BrownBagServices.Controllers
         [CacheWebApi(Duration = 30)]
         public ApiResponse<List<ProductSummaryModel>> GetFeaturedProducts(CurrencyTypeName currencyName)
         {
-            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var deviceNo = GetDeviceNo();
             var products = _productServices.GetFeaturedProducts(currencyName, deviceNo);
-            return ApiUtility.ApiSuccess<List<ProductSummaryModel>>(products);
+            return ApiUtility.ApiSuccess<List<ProductSummaryModel>>(products, "Featured products listing successfully");
         }
 
 
@@ -167,9 +161,9 @@ namespace BrownBagServices.Controllers
         [CacheWebApi(Duration = 30)]
         public ApiResponse<ProductDetailsSummaryModel> GetAllProducts(SearchProductModel search)
         {
-            var deviceNo = Request.Properties["deviceIdentity"].ToString();
+            var deviceNo = GetDeviceNo();
             var products = _productServices.GetAllProducts(search, deviceNo);
-            return ApiUtility.ApiSuccess<ProductDetailsSummaryModel>(products);
+            return ApiUtility.ApiSuccess<ProductDetailsSummaryModel>(products, "Search products using filter successfully");
         }
 
         [HttpGet]
@@ -178,7 +172,7 @@ namespace BrownBagServices.Controllers
         public ApiResponse<List<RootCategoryModel>> GetRootCategories()
         {
             var categories = _productServices.GetRootCategories();
-            return ApiUtility.ApiSuccess<List<RootCategoryModel>>(categories);
+            return ApiUtility.ApiSuccess<List<RootCategoryModel>>(categories, "Categories get successfully");
         }
 
         [HttpGet]
@@ -187,8 +181,83 @@ namespace BrownBagServices.Controllers
         public ApiResponse<ProductDetailsModel> GetProductdetails(int productId, CurrencyTypeName CurrencyName)
         {
             var product = _productServices.GetProductDetails(productId, CurrencyName);
-            return ApiUtility.ApiSuccess<ProductDetailsModel>(product);
+            return ApiUtility.ApiSuccess<ProductDetailsModel>(product, "Product details get successfully");
         }
 
+        [HttpPost]
+        [Route("v{version:apiVersion}/AddToWishList")]
+        public ApiResponse<bool> AddToWishList(int productId, CurrencyTypeName CurrencyName)
+        {
+            var deviceNo = GetDeviceNo();
+            var isSave = _productServices.AddToWishList(productId, CurrencyName, deviceNo);
+            return ApiUtility.ApiSuccess<bool>(isSave, isSave ? "Wishlist item added successfully" : "Failed!!!");
+        }
+
+        [HttpDelete]
+        [Route("v{version:apiVersion}/DeleteWishItem")]
+        public ApiResponse<bool> DeleteWishItem(int productId)
+        {
+            var deviceNo = GetDeviceNo();
+            var isDelete = _productServices.RemoveFromWishList(productId, deviceNo);
+            return ApiUtility.ApiSuccess<bool>(isDelete, isDelete ? "Wishlist item deleted successfully" : "Failed!!!");
+        }
+
+        [HttpGet]
+        [Route("v{version:apiVersion}/ShowWishListItems")]
+        public ApiResponse<List<WishListItem>> ShowWishListItems()
+        {
+            var deviceNo = GetDeviceNo();
+            var items = _productServices.ShowWishListItems(deviceNo);
+            return ApiUtility.ApiSuccess<List<WishListItem>>(items, "Wishlist item(s) found.");
+        }
+
+        [HttpGet]
+        [Route("v{version:apiVersion}/GetProductSuggestions")]
+        public ApiResponse<List<ProductBasicModel>> GetProductSuggestions()
+        {
+            var products = _productServices.GetProductSuggestions();
+            return ApiUtility.ApiSuccess<List<ProductBasicModel>>(products, "Data Found");
+        }
+
+
+        [HttpPost]
+        [Route("v{version:apiVersion}/AddToCart")]
+        public ApiResponse<bool> AddToCart(int productId, CurrencyTypeName CurrencyName)
+        {
+            var deviceNo = GetDeviceNo();
+            var isSave = _productServices.AddToCart(productId, CurrencyName, deviceNo);
+            if (isSave == true)
+            {
+                return ApiUtility.ApiSuccess<bool>(isSave, "Item added to cart");
+            }
+            return ApiUtility.ApiSuccess<bool>(isSave, "Failed !!!");
+        }
+
+        [HttpDelete]
+        [Route("v{version:apiVersion}/DeleteCartItem")]
+        public ApiResponse<CartItemSummary> DeleteCartItem(int productId)
+        {
+            var deviceNo = GetDeviceNo();
+            var isDelete = _productServices.RemoveFromCart(productId, deviceNo);
+            if (isDelete.Item1 == true)
+            {
+                return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2, "Item deleted successfully from cart");
+            }
+            return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2);
+        }
+
+        [HttpGet]
+        [Route("v{version:apiVersion}/ShowCartItems/{couponCode?}")]
+        public ApiResponse<CartItemSummary> ShowCartItems(string couponCode = "")
+        {
+            var deviceNo = GetDeviceNo();
+            var items = _productServices.ShowCartItems(deviceNo);
+            return ApiUtility.ApiSuccess<CartItemSummary>(items, "Item(s) found");
+        }
+
+        private string GetDeviceNo()
+        {
+            return Request.Properties["deviceIdentity"].ToString();
+        }
     }
 }

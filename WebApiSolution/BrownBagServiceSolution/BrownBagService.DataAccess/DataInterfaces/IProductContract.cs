@@ -16,5 +16,11 @@ namespace BrownBagService.DataAccess.DataInterfaces
         List<VendorsModel> GetFilterVendors(List<ProductSummaryModel> products);
         List<RootCategoryModel> GetRootCategories();
         ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName);
+        bool AddToWishList(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
+        List<WishListItem> ShowWishListItems(string deviceNumber);
+        List<ProductBasicModel> GetProductSuggestions();
+        bool RemoveFromWishList(int productId, string deviceNumber);
+        bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
+        bool RemoveFromCart(int productId, string deviceNumber);
     }
 }

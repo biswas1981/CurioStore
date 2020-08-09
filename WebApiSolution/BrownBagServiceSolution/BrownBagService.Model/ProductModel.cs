@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BrownBagService.Model
 {
-    public class ProductSummaryModel
+
+    public class ProductBasicModel
     {
         public int Id { get; set; }
+        public string ProductName { get; set; }
+    }
+
+    public class ProductSummaryModel : ProductBasicModel
+    {
+
         public int CategoryId { get; set; }
         public int ManufacturerId { get; set; }
         public int ArtistId { get; set; }
         public int VendorId { get; set; }
-        public string ProductName { get; set; }
+
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
         public decimal Price { get; set; }
@@ -155,6 +164,35 @@ namespace BrownBagService.Model
 
     }
 
+    public class WishListItem
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+        public decimal Price { get; set; }
+        public string CurrencyType { get; set; }
+        public int Stock { get; set; }
+        public string StockStatus { get; set; }
+    }
+
+
+    public class CartItemSummary
+    {
+        public List<CartItemDetails> CartItems { get; set; }
+        public CartCalculationModel CartCalculation { get; set; }
+    }
+    public class CartItemDetails
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+        public decimal Price { get; set; }
+        public string CurrencyType { get; set; }
+        public int Stock { get; set; }
+        public string StockStatus { get; set; }
+        
+    }
+
     public enum CurrencyTypeName
     {
         INR = 1,
@@ -162,5 +200,27 @@ namespace BrownBagService.Model
         EURO = 3,
         GBP = 4
     }
+    public enum StockStatus
+    {
+        [Description("In Stock")]
+        InStock = 1,
+        [Description("Low Stock")]
+        LowStock = 2,
+        [Description("Out Of Stock")]
+        OutOfStock = 3
 
+    }
+    public static class EnumDescription
+    {
+        public static string GetDescription(this Enum value)
+        {
+            FieldInfo field = value.GetType().GetField(value.ToString());
+            object[] attribs = field.GetCustomAttributes(typeof(DescriptionAttribute), true);
+            if (attribs.Length > 0)
+            {
+                return ((DescriptionAttribute)attribs[0]).Description;
+            }
+            return string.Empty;
+        }
+    }
 }

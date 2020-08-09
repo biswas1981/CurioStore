@@ -28,7 +28,7 @@ namespace BrownBagServices.Filters
                     }
                 }
                 string message = String.Join("|", errorCollestion.ToArray());
-                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>(message));
+                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Request body validation failed",message));
             }
 
         }

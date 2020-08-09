@@ -13,5 +13,12 @@ namespace BrownBagService.Business.Interfaces
         ProductDetailsSummaryModel GetAllProducts(SearchProductModel search, string deviceNo);
         List<RootCategoryModel> GetRootCategories();
         ProductDetailsModel GetProductDetails(int productId, CurrencyTypeName currencyTypeName);
+        bool AddToWishList(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
+        List<WishListItem> ShowWishListItems(string deviceNumber);
+        List<ProductBasicModel> GetProductSuggestions();
+        bool RemoveFromWishList(int productId, string deviceNumber);
+        bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
+        Tuple<bool, CartItemSummary> RemoveFromCart(int productId, string deviceNumber);
+        CartItemSummary ShowCartItems(string deviceNumber);
     }
 }

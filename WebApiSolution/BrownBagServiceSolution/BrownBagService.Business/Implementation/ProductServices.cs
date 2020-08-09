@@ -110,7 +110,6 @@ namespace BrownBagService.Business.Implementation
                     objProduct.FilterBrands = productContract.GetFilterBrand(products);
                     objProduct.FilterArtists = productContract.GetFilterArtists(products);
                     objProduct.FilterVendors = productContract.GetFilterVendors(products);
-
                     objProduct.ProductList.ForEach(x =>
                     {
                         x.ProductImages.ForEach(y =>
@@ -120,7 +119,6 @@ namespace BrownBagService.Business.Implementation
                             y.ThumbImageURL = y.ThumbImageURL.Replace("..", host);
                         });
                     });
-
                     if (objProduct.FilterCategories != null)
                     {
                         objProduct.FilterCategories.ForEach(x =>
@@ -128,7 +126,6 @@ namespace BrownBagService.Business.Implementation
                             x.PictureUrl = x.PictureUrl.Replace("..", host);
                         });
                     }
-
                     if (objProduct.FilterBrands != null)
                     {
                         objProduct.FilterBrands.ForEach(x =>
@@ -136,7 +133,6 @@ namespace BrownBagService.Business.Implementation
                             x.PictureURL = x.PictureURL.Replace("..", host);
                         });
                     }
-
                     if (objProduct.FilterArtists != null)
                     {
                         objProduct.FilterArtists.ForEach(x =>
@@ -144,7 +140,6 @@ namespace BrownBagService.Business.Implementation
                             x.PictureURL = x.PictureURL.Replace("..", host);
                         });
                     }
-
                     if (objProduct.FilterVendors != null)
                     {
                         objProduct.FilterVendors.ForEach(x =>
@@ -152,8 +147,149 @@ namespace BrownBagService.Business.Implementation
                             x.PictureURL = x.PictureURL.Replace("..", host);
                         });
                     }
-
                     return objProduct;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public bool AddToWishList(int productId, CurrencyTypeName currencyTypeName, string deviceNumber)
+        {
+            try
+            {
+                using (var productContract = new ProductContract())
+                {
+                    var product = productContract.AddToWishList(productId, currencyTypeName, deviceNumber);
+                    return product;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveFromWishList(int productId, string deviceNumber)
+        {
+            try
+            {
+                using (var productContract = new ProductContract())
+                {
+                    var product = productContract.RemoveFromWishList(productId, deviceNumber);
+                    return product;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<WishListItem> ShowWishListItems(string deviceNumber)
+        {
+            try
+            {
+                System.Configuration.AppSettingsReader settingsReader = new AppSettingsReader();
+                string host = (string)settingsReader.GetValue("WebHostName", typeof(String));
+                using (var productContract = new ProductContract())
+                {
+                    var products = productContract.ShowWishListItems(deviceNumber);
+                    products.ForEach(x =>
+                    {
+                        x.ProductImages.ForEach(y =>
+                        {
+                            y.GalleryImageURL = y.GalleryImageURL.Replace("..", host);
+                            y.ImageURL = y.ImageURL.Replace("..", host);
+                            y.ThumbImageURL = y.ThumbImageURL.Replace("..", host);
+                        });
+                    });
+                    return products;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber)
+        {
+            try
+            {
+                using (var productContract = new ProductContract())
+                {
+                    var product = productContract.AddToCart(productId, currencyTypeName, deviceNumber);
+                    return product;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public Tuple<bool,CartItemSummary> RemoveFromCart(int productId, string deviceNumber)
+        {
+            try
+            {
+                using (var productContract = new ProductContract())
+                {
+                    var isRemoved = productContract.RemoveFromCart(productId, deviceNumber);
+                    if (isRemoved == true)
+                    {
+                        return Tuple.Create(true, ShowCartItems(deviceNumber));
+                    }
+                    return Tuple.Create(false, new CartItemSummary());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+
+        public CartItemSummary ShowCartItems(string deviceNumber)
+        {
+            try
+            {
+                System.Configuration.AppSettingsReader settingsReader = new AppSettingsReader();
+                string host = (string)settingsReader.GetValue("WebHostName", typeof(String));
+                using (var productContract = new ProductContract())
+                {
+                    var products = productContract.ShowCartItems(deviceNumber);
+                    products.CartItems.ForEach(x =>
+                    {
+                        x.ProductImages.ForEach(y =>
+                        {
+                            y.GalleryImageURL = y.GalleryImageURL.Replace("..", host);
+                            y.ImageURL = y.ImageURL.Replace("..", host);
+                            y.ThumbImageURL = y.ThumbImageURL.Replace("..", host);
+                        });
+                    });
+                    return products;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+
+        public List<ProductBasicModel> GetProductSuggestions()
+        {
+            try
+            {
+                using (var productContract = new ProductContract())
+                {
+                    var products = productContract.GetProductSuggestions();
+                    return products;
                 }
             }
             catch

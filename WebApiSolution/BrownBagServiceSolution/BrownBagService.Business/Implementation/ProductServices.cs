@@ -231,7 +231,7 @@ namespace BrownBagService.Business.Implementation
             }
         }
 
-        public Tuple<bool,CartItemSummary> RemoveFromCart(int productId, string deviceNumber)
+        public Tuple<bool,CartItemSummary> RemoveFromCart(int productId, string deviceNumber, string cuponCode="")
         {
             try
             {
@@ -240,7 +240,7 @@ namespace BrownBagService.Business.Implementation
                     var isRemoved = productContract.RemoveFromCart(productId, deviceNumber);
                     if (isRemoved == true)
                     {
-                        return Tuple.Create(true, ShowCartItems(deviceNumber));
+                        return Tuple.Create(true, ShowCartItems(deviceNumber, cuponCode));
                     }
                     return Tuple.Create(false, new CartItemSummary());
                 }
@@ -253,7 +253,7 @@ namespace BrownBagService.Business.Implementation
 
 
 
-        public CartItemSummary ShowCartItems(string deviceNumber)
+        public CartItemSummary ShowCartItems(string deviceNumber, string cuponCode="")
         {
             try
             {
@@ -261,7 +261,7 @@ namespace BrownBagService.Business.Implementation
                 string host = (string)settingsReader.GetValue("WebHostName", typeof(String));
                 using (var productContract = new ProductContract())
                 {
-                    var products = productContract.ShowCartItems(deviceNumber);
+                    var products = productContract.ShowCartItems(deviceNumber, cuponCode);
                     products.CartItems.ForEach(x =>
                     {
                         x.ProductImages.ForEach(y =>

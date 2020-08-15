@@ -7,9 +7,19 @@ using System.Web.Http.Filters;
 
 namespace BrownBagServices.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CacheWebApiAttribute : ActionFilterAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int Duration { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterContext"></param>
         public override void OnActionExecuted(HttpActionExecutedContext filterContext)
         {
             filterContext.Response.Headers.CacheControl = new CacheControlHeaderValue()

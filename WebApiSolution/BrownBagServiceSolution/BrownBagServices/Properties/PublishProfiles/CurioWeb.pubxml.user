@@ -13,40 +13,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/31/2020 13:34:55</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/08/2020 20:09:16</publishTime>
+      <publishTime>08/15/2020 18:02:10</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/08/2020 20:09:16</publishTime>
+      <publishTime>08/15/2020 18:02:09</publishTime>
     </File>
     <File Include="bin/BrownBagService.Business.dll">
-      <publishTime>08/08/2020 20:08:20</publishTime>
+      <publishTime>08/15/2020 18:01:21</publishTime>
     </File>
     <File Include="bin/BrownBagService.Business.pdb">
-      <publishTime>08/08/2020 20:08:20</publishTime>
+      <publishTime>08/15/2020 18:01:21</publishTime>
     </File>
     <File Include="bin/BrownBagService.DataAccess.dll">
-      <publishTime>08/08/2020 20:08:18</publishTime>
+      <publishTime>08/15/2020 18:01:20</publishTime>
     </File>
     <File Include="bin/BrownBagService.DataAccess.pdb">
-      <publishTime>08/08/2020 20:08:18</publishTime>
+      <publishTime>08/15/2020 18:01:20</publishTime>
     </File>
     <File Include="bin/BrownBagService.Model.dll">
-      <publishTime>08/08/2020 20:08:08</publishTime>
+      <publishTime>08/15/2020 18:01:16</publishTime>
     </File>
     <File Include="bin/BrownBagService.Model.pdb">
-      <publishTime>08/08/2020 20:08:08</publishTime>
+      <publishTime>08/15/2020 18:01:16</publishTime>
     </File>
     <File Include="bin/BrownBagService.Utility.dll">
-      <publishTime>08/08/2020 20:08:08</publishTime>
+      <publishTime>08/15/2020 18:01:16</publishTime>
     </File>
     <File Include="bin/BrownBagService.Utility.pdb">
-      <publishTime>08/08/2020 20:08:08</publishTime>
+      <publishTime>08/15/2020 18:01:16</publishTime>
     </File>
     <File Include="bin/BrownBagServices.dll">
-      <publishTime>08/08/2020 20:08:33</publishTime>
+      <publishTime>08/15/2020 18:01:30</publishTime>
     </File>
     <File Include="bin/BrownBagServices.pdb">
-      <publishTime>08/08/2020 20:08:33</publishTime>
+      <publishTime>08/15/2020 18:01:30</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/25/2014 01:34:42</publishTime>
@@ -181,7 +181,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/01/2020 00:36:54</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/08/2020 20:09:00</publishTime>
+      <publishTime>08/15/2020 18:01:57</publishTime>
     </File>
     <File Include="Resource/fb.gif">
       <publishTime>07/31/2020 13:33:54</publishTime>
@@ -193,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/31/2020 13:33:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/08/2020 20:08:56</publishTime>
+      <publishTime>08/15/2020 18:01:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -64,3 +64,4 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Swashbuckle.Core.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagServices.xml

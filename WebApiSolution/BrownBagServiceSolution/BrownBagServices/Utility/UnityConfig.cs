@@ -9,8 +9,15 @@ using Unity;
 
 namespace BrownBagServices.Utility
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class UnityConfig
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static UnityContainer RegisterComponents()
         {
             var container = new UnityContainer();

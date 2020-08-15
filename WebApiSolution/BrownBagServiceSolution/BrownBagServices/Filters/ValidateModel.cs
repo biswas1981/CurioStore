@@ -11,8 +11,15 @@ using System.Web.Http.Filters;
 
 namespace BrownBagServices.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ValidateModel : ActionFilterAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="actionContext"></param>
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             if (actionContext.ModelState.IsValid == false)

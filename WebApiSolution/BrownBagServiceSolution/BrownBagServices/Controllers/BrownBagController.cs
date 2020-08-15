@@ -11,6 +11,9 @@ using System.Collections.Generic;
 
 namespace BrownBagServices.Controllers
 {
+    /// <summary>
+    /// BrownBag Services - Curio
+    /// </summary>
     [ApiVersion("1.0")]
     [RoutePrefix("brownbag/api")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -18,10 +21,20 @@ namespace BrownBagServices.Controllers
     [AuthFilter]
     public class BrownBagController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly ICustomerServices _customerServices;
         private readonly IOtpServicescs _otpServicescs;
         private readonly IBannerServices _bannerServices;
         private readonly IProductServices _productServices;
+        /// <summary>
+        /// BrownBag Controller
+        /// </summary>
+        /// <param name="customerServices"></param>
+        /// <param name="otpServicescs"></param>
+        /// <param name="bannerServices"></param>
+        /// <param name="productServices"></param>
         public BrownBagController(ICustomerServices customerServices, IOtpServicescs otpServicescs, IBannerServices bannerServices, IProductServices productServices)
         {
             _customerServices = customerServices;
@@ -31,7 +44,7 @@ namespace BrownBagServices.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Check Connection
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +53,11 @@ namespace BrownBagServices.Controllers
         {
             return ApiUtility.ApiSuccess<bool>(true, "Checked");
         }
-
+        /// <summary>
+        /// Check Customer by email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/CheckCustomer/{email}")]
         public ApiResponse<dynamic> CheckCustomer(string email)
@@ -56,6 +73,11 @@ namespace BrownBagServices.Controllers
             }
         }
 
+        /// <summary>
+        /// User Login
+        /// </summary>
+        /// <param name="logInModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/LogIn")]
         [ValidateModel]
@@ -67,7 +89,10 @@ namespace BrownBagServices.Controllers
             customerSummary = _customerServices.GetCustomerSummaryByEmail(logInModel.Email.Trim());
             return ApiUtility.ApiSuccess<dynamic>(new { IsLogin = isLogin, CustomerSummary = customerSummary }, isLogin ? "Loging successfully" : "Failed !!! Incorrect Email or Password");
         }
-
+        /// <summary>
+        /// User Logoff
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/LogOff")]
         public ApiResponse<bool> LogOff()
@@ -77,6 +102,11 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<bool>(isLogOff, isLogOff ? "Logoff successfully" : "Failed !!!");
         }
 
+        /// <summary>
+        /// Send OTP
+        /// </summary>
+        /// <param name="otpBodyModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/SendOtp")]
         [ValidateModel]
@@ -92,7 +122,11 @@ namespace BrownBagServices.Controllers
             });
             return ApiUtility.ApiSuccess<bool>(isSend, isSend ? "OTP send successfully" : "Failed !!!");
         }
-
+        /// <summary>
+        /// Register new user
+        /// </summary>
+        /// <param name="customerBasicDetails"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/RegisterUser")]
         [ValidateModel]
@@ -110,6 +144,11 @@ namespace BrownBagServices.Controllers
             }
         }
 
+        /// <summary>
+        /// Verify OTP
+        /// </summary>
+        /// <param name="otpDetails"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/VerifyOTP")]
         public ApiResponse<bool> VerifyOTP(dynamic otpDetails)
@@ -118,6 +157,11 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<bool>(isVrified, isVrified ? "OTP varified successfully" : "Failed !!!");
         }
 
+        /// <summary>
+        /// Change Password
+        /// </summary>
+        /// <param name="customerChangePassword"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/ChangePassword")]
         [ValidateModel]
@@ -136,6 +180,10 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<bool>(isSaved, isSaved ? "Password saved successfully" : "Failed !!!");
         }
 
+        /// <summary>
+        /// Get Banners
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/GetBanners")]
         [CacheWebApi(Duration = 30)]
@@ -145,6 +193,11 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<List<BannerModel>>(banners, "Banners listing successfully");
         }
 
+        /// <summary>
+        /// Get Featured Products
+        /// </summary>
+        /// <param name="currencyName"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/GetFeaturedProducts/{currencyName}")]
         [CacheWebApi(Duration = 30)]
@@ -155,7 +208,11 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<List<ProductSummaryModel>>(products, "Featured products listing successfully");
         }
 
-
+        /// <summary>
+        /// Get All Products
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/GetAllProducts")]
         [CacheWebApi(Duration = 30)]
@@ -166,6 +223,10 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<ProductDetailsSummaryModel>(products, "Search products using filter successfully");
         }
 
+        /// <summary>
+        /// Get Root Categories
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/GetRootCategories/{currencyName}")]
         [CacheWebApi(Duration = 30)]
@@ -174,7 +235,12 @@ namespace BrownBagServices.Controllers
             var categories = _productServices.GetRootCategories();
             return ApiUtility.ApiSuccess<List<RootCategoryModel>>(categories, "Categories get successfully");
         }
-
+        /// <summary>
+        /// Get Product details
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="CurrencyName"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/GetProductdetails/{productId}/{CurrencyName}")]
         [CacheWebApi(Duration = 30)]
@@ -183,7 +249,12 @@ namespace BrownBagServices.Controllers
             var product = _productServices.GetProductDetails(productId, CurrencyName);
             return ApiUtility.ApiSuccess<ProductDetailsModel>(product, "Product details get successfully");
         }
-
+        /// <summary>
+        /// Add To WishList
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="CurrencyName"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/AddToWishList")]
         public ApiResponse<bool> AddToWishList(int productId, CurrencyTypeName CurrencyName)
@@ -192,7 +263,11 @@ namespace BrownBagServices.Controllers
             var isSave = _productServices.AddToWishList(productId, CurrencyName, deviceNo);
             return ApiUtility.ApiSuccess<bool>(isSave, isSave ? "Wishlist item added successfully" : "Failed!!!");
         }
-
+        /// <summary>
+        /// Delete WishItem
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("v{version:apiVersion}/DeleteWishItem")]
         public ApiResponse<bool> DeleteWishItem(int productId)
@@ -201,7 +276,10 @@ namespace BrownBagServices.Controllers
             var isDelete = _productServices.RemoveFromWishList(productId, deviceNo);
             return ApiUtility.ApiSuccess<bool>(isDelete, isDelete ? "Wishlist item deleted successfully" : "Failed!!!");
         }
-
+        /// <summary>
+        /// Show Wish ListItems
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/ShowWishListItems")]
         public ApiResponse<List<WishListItem>> ShowWishListItems()
@@ -210,7 +288,10 @@ namespace BrownBagServices.Controllers
             var items = _productServices.ShowWishListItems(deviceNo);
             return ApiUtility.ApiSuccess<List<WishListItem>>(items, "Wishlist item(s) found.");
         }
-
+        /// <summary>
+        /// Get Product Suggestions
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/GetProductSuggestions")]
         public ApiResponse<List<ProductBasicModel>> GetProductSuggestions()
@@ -219,7 +300,12 @@ namespace BrownBagServices.Controllers
             return ApiUtility.ApiSuccess<List<ProductBasicModel>>(products, "Data Found");
         }
 
-
+        /// <summary>
+        /// Add To Cart
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="CurrencyName"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v{version:apiVersion}/AddToCart")]
         public ApiResponse<bool> AddToCart(int productId, CurrencyTypeName CurrencyName)
@@ -232,20 +318,29 @@ namespace BrownBagServices.Controllers
             }
             return ApiUtility.ApiSuccess<bool>(isSave, "Failed !!!");
         }
-
+        /// <summary>
+        /// Delete Cart Item
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="cuponCode"></param>
+        /// <returns></returns>
         [HttpDelete]
-        [Route("v{version:apiVersion}/DeleteCartItem")]
-        public ApiResponse<CartItemSummary> DeleteCartItem(int productId)
+        [Route("v{version:apiVersion}/DeleteCartItem/{productId}/{cuponCode?}")]
+        public ApiResponse<CartItemSummary> DeleteCartItem(int productId, string cuponCode = "")
         {
             var deviceNo = GetDeviceNo();
-            var isDelete = _productServices.RemoveFromCart(productId, deviceNo);
+            var isDelete = _productServices.RemoveFromCart(productId, deviceNo, cuponCode);
             if (isDelete.Item1 == true)
             {
                 return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2, "Item deleted successfully from cart");
             }
             return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2);
         }
-
+        /// <summary>
+        /// Show Cart Items
+        /// </summary>
+        /// <param name="couponCode"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v{version:apiVersion}/ShowCartItems/{couponCode?}")]
         public ApiResponse<CartItemSummary> ShowCartItems(string couponCode = "")

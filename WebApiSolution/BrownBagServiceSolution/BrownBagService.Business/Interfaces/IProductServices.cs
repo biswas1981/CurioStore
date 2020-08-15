@@ -18,7 +18,7 @@ namespace BrownBagService.Business.Interfaces
         List<ProductBasicModel> GetProductSuggestions();
         bool RemoveFromWishList(int productId, string deviceNumber);
         bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
-        Tuple<bool, CartItemSummary> RemoveFromCart(int productId, string deviceNumber);
-        CartItemSummary ShowCartItems(string deviceNumber);
+        Tuple<bool, CartItemSummary> RemoveFromCart(int productId, string deviceNumber, string cuponCode = "");
+        CartItemSummary ShowCartItems(string deviceNumber, string cuponCode = "");
     }
 }

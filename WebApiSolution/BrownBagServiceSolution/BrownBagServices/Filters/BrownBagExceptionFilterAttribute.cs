@@ -9,8 +9,15 @@ using System.Web.Http.Filters;
 
 namespace BrownBagServices.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BrownBagExceptionFilterAttribute : ExceptionFilterAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public override void OnException(HttpActionExecutedContext context)
         {
             if (context.Exception is Exception)

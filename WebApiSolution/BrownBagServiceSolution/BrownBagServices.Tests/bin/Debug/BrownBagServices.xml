@@ -1,0 +1,514 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BrownBagServices</name>
+    </assembly>
+    <members>
+        <member name="T:BrownBagServices.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Startup.OAuthBearerOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:BrownBagServices.Startup.OAuthServerOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Startup.ConfigureOAuth(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:BrownBagServices.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:BrownBagServices.SwaggerConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.SwaggerConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="T:BrownBagServices.WebApiConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="T:BrownBagServices.Controllers.BrownBagController">
+            <summary>
+            BrownBag Services - Curio
+            </summary>
+        </member>
+        <member name="F:BrownBagServices.Controllers.BrownBagController._customerServices">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.#ctor(BrownBagService.Business.Interfaces.ICustomerServices,BrownBagService.Business.Interfaces.IOtpServicescs,BrownBagService.Business.Interfaces.IBannerServices,BrownBagService.Business.Interfaces.IProductServices)">
+            <summary>
+            BrownBag Controller
+            </summary>
+            <param name="customerServices"></param>
+            <param name="otpServicescs"></param>
+            <param name="bannerServices"></param>
+            <param name="productServices"></param>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.CheckConnection">
+            <summary>
+            Check Connection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.CheckCustomer(System.String)">
+            <summary>
+            Check Customer by email
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.LogIn(BrownBagService.Model.LogInModel)">
+            <summary>
+            User Login
+            </summary>
+            <param name="logInModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.LogOff">
+            <summary>
+            User Logoff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.SendOtp(BrownBagService.Model.OtpBodyModel)">
+            <summary>
+            Send OTP
+            </summary>
+            <param name="otpBodyModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.UserRegistration(BrownBagService.Model.CustomerBasicDetails)">
+            <summary>
+            Register new user
+            </summary>
+            <param name="customerBasicDetails"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.VerifyOTP(System.Object)">
+            <summary>
+            Verify OTP
+            </summary>
+            <param name="otpDetails"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.ChangePassword(BrownBagService.Model.CustomerChangePassword)">
+            <summary>
+            Change Password
+            </summary>
+            <param name="customerChangePassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetBanners">
+            <summary>
+            Get Banners
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetFeaturedProducts(BrownBagService.Model.CurrencyTypeName)">
+            <summary>
+            Get Featured Products
+            </summary>
+            <param name="currencyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetAllProducts(BrownBagService.Model.SearchProductModel)">
+            <summary>
+            Get All Products
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetRootCategories">
+            <summary>
+            Get Root Categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetProductdetails(System.Int32,BrownBagService.Model.CurrencyTypeName)">
+            <summary>
+            Get Product details
+            </summary>
+            <param name="productId"></param>
+            <param name="CurrencyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.AddToWishList(System.Int32,BrownBagService.Model.CurrencyTypeName)">
+            <summary>
+            Add To WishList
+            </summary>
+            <param name="productId"></param>
+            <param name="CurrencyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.DeleteWishItem(System.Int32)">
+            <summary>
+            Delete WishItem
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.ShowWishListItems">
+            <summary>
+            Show Wish ListItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.GetProductSuggestions">
+            <summary>
+            Get Product Suggestions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.AddToCart(System.Int32,BrownBagService.Model.CurrencyTypeName)">
+            <summary>
+            Add To Cart
+            </summary>
+            <param name="productId"></param>
+            <param name="CurrencyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.DeleteCartItem(System.Int32,System.String)">
+            <summary>
+            Delete Cart Item
+            </summary>
+            <param name="productId"></param>
+            <param name="cuponCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.ShowCartItems(System.String)">
+            <summary>
+            Show Cart Items
+            </summary>
+            <param name="couponCode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BrownBagServices.Filters.BrownBagExceptionFilterAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Filters.BrownBagExceptionFilterAttribute.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:BrownBagServices.Filters.CacheWebApiAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Filters.CacheWebApiAttribute.Duration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Filters.CacheWebApiAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:BrownBagServices.Filters.ValidateModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Filters.ValidateModel.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="T:BrownBagServices.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BrownBagServices.Models.ApiResponse`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:BrownBagServices.Models.ApiResponse`1.HttpStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Models.ApiResponse`1.ResponseData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Models.ApiResponse`1.ErrorData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Models.ApiResponse`1.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BrownBagServices.Providers.ApplicationAccessTokenProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationAccessTokenProvider.CreateAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationAccessTokenProvider.ReceiveAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationAccessTokenProvider.Create(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationAccessTokenProvider.Receive(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:BrownBagServices.Providers.ApplicationOAuthProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationOAuthProvider.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationOAuthProvider.ValidateClientAuthentication(Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationOAuthProvider.TokenEndpointResponse(Microsoft.Owin.Security.OAuth.OAuthTokenEndpointResponseContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationOAuthProvider.TokenEndpoint(Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationOAuthProvider.GrantResourceOwnerCredentials(Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BrownBagServices.Providers.ApplicationRefreshTokenProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationRefreshTokenProvider.CreateAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationRefreshTokenProvider.ReceiveAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationRefreshTokenProvider.Create(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:BrownBagServices.Providers.ApplicationRefreshTokenProvider.Receive(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:BrownBagServices.Providers.AuthFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BrownBagServices.Providers.AuthFilter.GivenName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.AuthFilter.#ctor">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Providers.AuthFilter.OnAuthorization(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="M:BrownBagServices.Providers.AuthFilter.HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="T:BrownBagServices.Utility.ApiUtility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Utility.ApiUtility.ApiSuccess``1(``0,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.ApiUtility.ApiError``1(System.Exception,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ex"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.ApiUtility.ApiBadRequest``1(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="trace"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.ApiUtility.ApiInvalidLogin``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:BrownBagServices.Utility.BrownBagLog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:BrownBagServices.Utility.BrownBagLog.log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BrownBagServices.Utility.UnityConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityConfig.RegisterComponents">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BrownBagServices.Utility.UnityResolver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityResolver.#ctor(Unity.IUnityContainer)">
+            <summary>
+            
+            </summary>
+            <param name="container"></param>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityResolver.GetService(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityResolver.GetServices(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityResolver.BeginScope">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BrownBagServices.Utility.UnityResolver.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

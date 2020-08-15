@@ -535,7 +535,7 @@ namespace BrownBagService.DataAccess.DataContract
             }
         }
 
-        public CartItemSummary ShowCartItems(string deviceNumber)
+        public CartItemSummary ShowCartItems(string deviceNumber,  string cuponCode)
         {
             try
             {

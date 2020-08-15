@@ -76,3 +76,4 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\D
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Web.Infrastructure.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Swashbuckle.Core.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\WebActivatorEx.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.XML

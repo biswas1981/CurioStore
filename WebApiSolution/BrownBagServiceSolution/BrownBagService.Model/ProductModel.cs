@@ -191,6 +191,7 @@ namespace BrownBagService.Model
         public int Stock { get; set; }
         public string StockStatus { get; set; }
         
+
     }
 
     public enum CurrencyTypeName
@@ -222,5 +223,10 @@ namespace BrownBagService.Model
             }
             return string.Empty;
         }
+    }
+
+    public abstract class c1 : CartItemDetails
+    {
+        public abstract void f1();
     }
 }

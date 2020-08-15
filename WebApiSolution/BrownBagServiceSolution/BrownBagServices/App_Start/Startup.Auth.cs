@@ -12,6 +12,9 @@ using System.Web.Http;
 
 namespace BrownBagServices
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Startup
     {
        /// <summary>

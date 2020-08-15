@@ -22,5 +22,6 @@ namespace BrownBagService.DataAccess.DataInterfaces
         bool RemoveFromWishList(int productId, string deviceNumber);
         bool AddToCart(int productId, CurrencyTypeName currencyTypeName, string deviceNumber);
         bool RemoveFromCart(int productId, string deviceNumber);
+        CartItemSummary ShowCartItems(string deviceNumber, string cuponCode);
     }
 }

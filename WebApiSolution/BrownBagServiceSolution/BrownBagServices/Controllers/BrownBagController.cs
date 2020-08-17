@@ -173,7 +173,7 @@ namespace BrownBagServices.Controllers
         /// </summary>
         /// <remarks>List of Address</remarks>
         /// <returns>List of Customer Address Details</returns>
-        [HttpPost]
+        [HttpGet]
         [Route("v{version:apiVersion}/ShowAddresses")]
         [ValidateModel]
         public ApiResponse<List<CustomerAddressDetails>> ShowAddresses()

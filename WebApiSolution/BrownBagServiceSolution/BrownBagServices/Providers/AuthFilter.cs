@@ -25,12 +25,12 @@ namespace BrownBagServices.Providers
         /// <summary>
         /// 
         /// </summary>
-        public  string GivenName { get; set; }
+        public string GivenName { get; set; }
         /// <summary>
         /// 
         /// </summary>
 
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -62,16 +62,26 @@ namespace BrownBagServices.Providers
                         // get the access token
                         AccessTokenFromRequest = actionContext.Request.Headers.Authorization.Parameter;
                     }
-                    var tokenTicket = Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(AccessTokenFromRequest);
-                    var deviceId = tokenTicket.Identity.Claims.Where(c => c.Type.StartsWith("deviceId")).FirstOrDefault().Value;
-
-                    string AccessTokenStored = deviceRegistrationServices.GetDeviceByDeviceId(deviceId)?.AccessToken ?? "";
-                    if (AccessTokenFromRequest != AccessTokenStored)
-                    {                      
-                        base.HandleUnauthorizedRequest(actionContext);                       
+                    if (string.IsNullOrEmpty(AccessTokenFromRequest))
+                    {
+                        base.HandleUnauthorizedRequest(actionContext);
+                        base.IsAuthorized(actionContext);
+                        AuthorizeRequest(actionContext, null);
                     }
-                    base.IsAuthorized(actionContext);
-                    AuthorizeRequest(actionContext, tokenTicket);
+                    else
+                    {
+                        var tokenTicket = Startup.OAuthServerOptions.AccessTokenFormat.Unprotect(AccessTokenFromRequest);
+                        var deviceId = tokenTicket.Identity.Claims.Where(c => c.Type.StartsWith("deviceId")).FirstOrDefault().Value;
+
+                        string AccessTokenStored = deviceRegistrationServices.GetDeviceByDeviceId(deviceId)?.AccessToken ?? "";
+                        if (AccessTokenFromRequest != AccessTokenStored)
+                        {
+                            base.HandleUnauthorizedRequest(actionContext);
+                        }
+                        base.IsAuthorized(actionContext);
+                        AuthorizeRequest(actionContext, tokenTicket);
+                    }
+                    
                 }
             }
             catch (Exception)
@@ -104,7 +114,7 @@ namespace BrownBagServices.Providers
             token = (actionContext.Request.Headers.Any(x => x.Key == "Authorization")) ? actionContext.Request.Headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value.SingleOrDefault().Replace("Bearer ", "") : "";
             if (token == string.Empty)
             {
-                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Header","Invalid Header/Token not present"));
+                actionContext.Response = actionContext.Request.CreateResponse<ApiResponse<bool>>(HttpStatusCode.OK, ApiUtility.ApiBadRequest<bool>("Invalid Header", "Invalid Header/Token not present"));
                 return;
             }
             //your OAuth startup class may be called something else...

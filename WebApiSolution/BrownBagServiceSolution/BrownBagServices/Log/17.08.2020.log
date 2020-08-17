@@ -1,0 +1,20 @@
+ERROR 2020-08-17 23:57:28,492 [(null), (null), 10, (null)] BrownBagServices.Utility.BrownBagLog -    at BrownBagServices.Providers.AuthFilter.OnAuthorization(HttpActionContext actionContext) in D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\Providers\AuthFilter.cs:line 83
+   at System.Web.Http.Filters.AuthorizationFilterAttribute.OnAuthorizationAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.AuthorizationFilterAttribute.<ExecuteAuthorizationFilterAsyncCore>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext()
+ERROR 2020-08-17 23:57:53,662 [(null), (null), 9, (null)] BrownBagServices.Utility.BrownBagLog -    at BrownBagServices.Providers.AuthFilter.OnAuthorization(HttpActionContext actionContext) in D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\Providers\AuthFilter.cs:line 83
+   at System.Web.Http.Filters.AuthorizationFilterAttribute.OnAuthorizationAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.AuthorizationFilterAttribute.<ExecuteAuthorizationFilterAsyncCore>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext()

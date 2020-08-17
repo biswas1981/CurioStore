@@ -26,8 +26,7 @@ namespace BrownBagServices
                         c.ApiKey("Token").Description("Filling bearer token here").Name("Authorization").In("header");
                         c.IncludeXmlComments(string.Format(@"{0}\bin\BrownBagServices.XML", System.AppDomain.CurrentDomain.BaseDirectory));
                         c.SingleApiVersion("v1", "Brown Bag Services - Curio").Description("Curio Apis");
-                        c.SchemaId(x => x.FullName);
-                                      
+                        c.SchemaId(x => x.FullName);                                      
                     })
                 .EnableSwaggerUi(c =>
                     {

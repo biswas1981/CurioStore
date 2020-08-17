@@ -120,7 +120,6 @@
             <remarks>If Id = 0 then new record will insert other wise record will update by Id value.</remarks>
             <returns>boolen</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:BrownBagServices.Controllers.BrownBagController.ShowAddresses" -->
         <member name="M:BrownBagServices.Controllers.BrownBagController.VerifyOTP(System.Object)">
             <summary>
             Verify OTP

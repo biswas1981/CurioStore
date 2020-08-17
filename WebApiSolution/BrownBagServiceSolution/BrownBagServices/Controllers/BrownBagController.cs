@@ -144,6 +144,53 @@ namespace BrownBagServices.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Add user address
+        /// </summary>
+        /// <param name="customerBillingAddress"></param>
+        /// <remarks>If Id = 0 then new record will insert other wise record will update by Id value.</remarks>
+        /// <returns>boolen</returns>
+        [HttpPost]
+        [Route("v{version:apiVersion}/SaveAddress")]
+        [ValidateModel]
+        public ApiResponse<bool> SaveAddress(CustomerBillingAddress customerBillingAddress)
+        {
+            var deviceNo = GetDeviceNo();
+            var isSaved = _customerServices.SaveBillingAddress(customerBillingAddress, deviceNo);
+            if (isSaved)
+            {
+                return ApiUtility.ApiSuccess<bool>(isSaved,"New address added successfully" );
+            }
+            else
+            {
+                return ApiUtility.ApiSuccess<bool>(false, "Failed !!!");
+            }
+        }
+
+        /// <summary>
+        /// Show user addresses
+        /// </summary>
+        /// <remarks>List of Address</remarks>
+        /// <returns>List<CustomerAddressDetails></returns>
+        [HttpPost]
+        [Route("v{version:apiVersion}/ShowAddresses")]
+        [ValidateModel]
+        public ApiResponse<List<CustomerAddressDetails>> ShowAddresses()
+        {
+            var deviceNo = GetDeviceNo();
+            var listData = _customerServices.GetAddresses(deviceNo);
+            if (listData!=null && listData.Count>0)
+            {
+                return ApiUtility.ApiSuccess<List<CustomerAddressDetails>>(listData, "all addresses get successfully");
+            }
+            else
+            {
+                return ApiUtility.ApiSuccess<List<CustomerAddressDetails>>(null, "Failed !!!");
+            }
+        }
+
+
         /// <summary>
         /// Verify OTP
         /// </summary>
@@ -334,7 +381,7 @@ namespace BrownBagServices.Controllers
             {
                 return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2, "Item deleted successfully from cart");
             }
-            return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2);
+            return ApiUtility.ApiSuccess<CartItemSummary>(isDelete.Item2, "Failed !!!");
         }
         /// <summary>
         /// Show Cart Items

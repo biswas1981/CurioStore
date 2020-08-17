@@ -21,6 +21,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Owin.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Http.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Swashbuckle.Core.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Net.Http.Formatting.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Newtonsoft.Json.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Unity.Container.dll
@@ -33,12 +34,13 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Microsoft.Owin.Cors.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Http.Owin.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Http.WebHost.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.DataAccess.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Cors.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\EntityFramework.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagServices.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagServices.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\log4net.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Microsoft.Owin.xml
@@ -56,12 +58,10 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Microsoft.Owin.Cors.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Http.Owin.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Web.Http.WebHost.xml
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.DataAccess.pdb
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagService.Utility.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\EntityFramework.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.csprojResolveAssemblyReference.cache
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\obj\Debug\BrownBagServices.Tests.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\Swashbuckle.Core.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices.Tests\bin\Debug\BrownBagServices.xml

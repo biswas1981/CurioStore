@@ -12,6 +12,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\r
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\roslyn\VBCSCompiler.exe.config
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\log4net.config
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.dll.config
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.XML
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Business.dll
@@ -31,8 +32,10 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\M
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.Cookies.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Web.Infrastructure.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Newtonsoft.Json.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Owin.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Swashbuckle.Core.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Net.Http.Formatting.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Runtime.CompilerServices.Unsafe.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Cors.dll
@@ -42,6 +45,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\S
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.WebHost.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Abstractions.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Container.dll
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\WebActivatorEx.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Business.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.Model.pdb
@@ -60,6 +64,7 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\M
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Newtonsoft.Json.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Net.Http.Formatting.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Runtime.CompilerServices.Unsafe.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.xml
@@ -67,13 +72,8 @@ D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\S
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.Owin.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Abstractions.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Unity.Container.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Newtonsoft.Json.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\System.Web.Http.WebHost.xml
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagService.DataAccess.pdb
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.csprojResolveAssemblyReference.cache
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.dll
 D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\obj\Debug\BrownBagServices.pdb
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Microsoft.Web.Infrastructure.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\Swashbuckle.Core.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\WebActivatorEx.dll
-D:\Work\CurioStore\WebApiSolution\BrownBagServiceSolution\BrownBagServices\bin\BrownBagServices.XML

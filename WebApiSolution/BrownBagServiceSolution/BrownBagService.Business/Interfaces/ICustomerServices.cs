@@ -16,5 +16,7 @@ namespace BrownBagService.Business.Interfaces
         bool ChangeCustomerPassword(string deviceId, string password, string email);
         bool CustomerLogIn(string deviceId, string password, string email);
         bool CustomerLogOff(string deviceId);
+        bool SaveBillingAddress(CustomerBillingAddress customerBillingAddress, string deviceNo);
+        List<CustomerAddressDetails> GetAddresses(string deviceNo);
     }
 }

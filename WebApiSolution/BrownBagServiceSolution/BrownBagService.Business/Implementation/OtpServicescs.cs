@@ -45,7 +45,7 @@ namespace BrownBagService.Business.Implementation
                 if (isSave)
                 {
                     var config = new EmailConfigServices().GetEmailConfig();
-                    EmailHalper.SendEmail(config.Host, config.EmailAddress, config.Password, OtpDetailsModel.Email, OtpDetailsModel.CustomerName, OtpDetailsModel.OTP);
+                    EmailHalper.SendEmail(config.Host, config.UserName, config.Password, OtpDetailsModel.Email, OtpDetailsModel.CustomerName, OtpDetailsModel.OTP);
                 }
                 return isSave;
             }

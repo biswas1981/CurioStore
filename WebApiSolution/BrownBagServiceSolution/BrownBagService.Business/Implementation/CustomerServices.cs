@@ -4,9 +4,6 @@ using BrownBagService.Model;
 using BrownBagService.Utility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace BrownBagService.Business.Implementation
@@ -22,7 +19,7 @@ namespace BrownBagService.Business.Implementation
                 {
                     using (var scope = new TransactionScope())
                     {
-                        
+
                         Guid customerId = Guid.NewGuid();
                         var isSaved = dataContract.AddNewCoustomer(customer, customerId);
                         if (isSaved)
@@ -76,9 +73,9 @@ namespace BrownBagService.Business.Implementation
                     string encryptedPassword = CryptorEngine.Encrypt(password, true);
                     if (!string.IsNullOrEmpty(deviceId) && string.IsNullOrEmpty(email))
                     {
-                        return dataContract.ChangeCustomerPassword(deviceId.Trim(), encryptedPassword ,"");
+                        return dataContract.ChangeCustomerPassword(deviceId.Trim(), encryptedPassword, "");
                     }
-                    else if(string.IsNullOrEmpty(deviceId) && !string.IsNullOrEmpty(email))
+                    else if (string.IsNullOrEmpty(deviceId) && !string.IsNullOrEmpty(email))
                     {
                         return dataContract.ChangeCustomerPassword("", encryptedPassword, email);
                     }
@@ -101,7 +98,7 @@ namespace BrownBagService.Business.Implementation
                     if (!string.IsNullOrEmpty(deviceId) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
                     {
                         return dataContract.CustomerLogIn(deviceId.Trim(), encryptedPassword, email);
-                    }                   
+                    }
                     return false;
                 }
             }
@@ -117,12 +114,51 @@ namespace BrownBagService.Business.Implementation
             {
                 using (var dataContract = new CustomerContract())
                 {
-                    
-                    if (!string.IsNullOrEmpty(deviceId) )
+
+                    if (!string.IsNullOrEmpty(deviceId))
                     {
                         return dataContract.CustomerLogOff(deviceId.Trim());
                     }
                     return false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public bool SaveBillingAddress(CustomerBillingAddress customerBillingAddress, string deviceNo)
+        {
+            try
+            {
+                using (var dataContract = new CustomerAttributeContract())
+                {
+                    if (!string.IsNullOrEmpty(deviceNo))
+                    {
+                        return dataContract.SaveBillingAddress(customerBillingAddress, deviceNo.Trim());
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<CustomerAddressDetails> GetAddresses(string deviceNo)
+        {
+            try
+            {
+                using (var dataContract = new CustomerAttributeContract())
+                {
+                    if (!string.IsNullOrEmpty(deviceNo))
+                    {
+                        return dataContract.GetAddresses(deviceNo.Trim());
+                    }
+                    return null;
                 }
             }
             catch

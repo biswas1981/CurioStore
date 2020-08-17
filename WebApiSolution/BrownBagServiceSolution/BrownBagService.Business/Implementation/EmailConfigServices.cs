@@ -21,14 +21,17 @@ namespace BrownBagService.Business.Implementation
                     return dataContract.GetEmailConfig().Select(s => new EmailConfigModel
                     {
                         DisplayName = s.DisplayName ?? "",
-                        EmailAddress = s.EmailAddress ?? "",
-                        Host = s.Host ?? "",
+                        //EmailAddress = s.EmailAddress ?? "",
+                        EmailAddress = "contact@ranjandesk.co.in",
+                        //Host = s.Host ?? "",
+                        Host = "webmail.ranjandesk.co.in",
                         Id = s.Id,
                         //Password = CryptorEngine.Decrypt(s.Password ?? "", true),
-                        Password = "Password@1234567890",
+                        Password = "Password@123",
                         Port = s.Port ?? "",
                         SendEmailTo = s.SendEmailTo ?? "",
-                        UserName = s.UserName ?? ""
+                        //UserName = s.UserName ?? ""
+                        UserName = "contact@ranjandesk.co.in"
                     }).FirstOrDefault();
                 }
             }

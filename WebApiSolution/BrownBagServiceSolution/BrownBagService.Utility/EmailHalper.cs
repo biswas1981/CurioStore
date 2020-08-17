@@ -26,8 +26,9 @@ namespace BrownBagService.Utility
                 mm.IsBodyHtml = true;
                 mm.AlternateViews.Add(Mail_Body(body));
                 SmtpClient smtp = new SmtpClient();
+                smtp.Timeout = 1000000;
                 smtp.Host = host; //Gmail
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = false;
                 System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
                 NetworkCred.UserName = fromaddress;
                 NetworkCred.Password = frompassword;

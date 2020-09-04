@@ -11,5 +11,6 @@ namespace BrownBagService.DataAccess.DataInterfaces
     {
         bool AddNewAddress(CustomerDetailAttribute customerAddress);
         bool SaveBillingAddress(CustomerBillingAddress customerBillingAddress, string deviceNo);
+        bool DeleteAddress(string deviceNo, int id);
     }
 }

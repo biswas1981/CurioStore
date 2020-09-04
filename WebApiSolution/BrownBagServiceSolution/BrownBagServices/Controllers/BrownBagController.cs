@@ -190,6 +190,20 @@ namespace BrownBagServices.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete addresse
+        /// </summary>
+        /// <remarks>Delete addresse</remarks>
+        /// <returns>Delete addresse by Id</returns>
+        [HttpDelete]
+        [Route("v{version:apiVersion}/DeleteAddress/{id}")]       
+        public ApiResponse<bool> DeleteAddress(int id)
+        {
+            var deviceNo = GetDeviceNo();
+            var isDelete = _customerServices.DeleteAddress(deviceNo, id);
+            return ApiUtility.ApiSuccess<bool>(isDelete, isDelete == true ? "Address deleted successfully" : "Failed !!!");       
+        }
+
 
         /// <summary>
         /// Verify OTP

@@ -127,6 +127,13 @@
             <remarks>List of Address</remarks>
             <returns>List of Customer Address Details</returns>
         </member>
+        <member name="M:BrownBagServices.Controllers.BrownBagController.DeleteAddress(System.Int32)">
+            <summary>
+            Delete addresse
+            </summary>
+            <remarks>Delete addresse</remarks>
+            <returns>Delete addresse by Id</returns>
+        </member>
         <member name="M:BrownBagServices.Controllers.BrownBagController.VerifyOTP(System.Object)">
             <summary>
             Verify OTP

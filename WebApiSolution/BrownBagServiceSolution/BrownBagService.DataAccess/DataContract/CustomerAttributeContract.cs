@@ -178,8 +178,51 @@ namespace BrownBagService.DataAccess.DataContract
             }
         }
 
+        public bool DeleteAddress(string deviceNo, int id)
+        {
+            try
+            {
+                using (var dataContext = new BrownBagDataEntities())
+                {
+                    var device = dataContext.DeviceRegistrations.Where(a => a.IMEI_Number == deviceNo).FirstOrDefault();
+                    if (device == null)
+                    {
+                        return false;
+                    }
+                    if (device.RefCustomerGuid == null)
+                    {
+                        return false;
+                    }
+                    var address = dataContext.Addresses
+                        .Where(a => a.Id == id && a.CustomerGUID == device.RefCustomerGuid && a.Status == 1)
+                        .FirstOrDefault();
 
+                    var relatedDetail = dataContext.Customers
+                        .Where(a => a.CustomerGuid == device.RefCustomerGuid
+                        && a.ShippingAddress_Id == address.Id || a.BillingAddress_Id == address.Id)
+                        .FirstOrDefault();
 
+                    if (relatedDetail != null)
+                    {
+                        if (relatedDetail.BillingAddress_Id == address.Id)
+                        {
+                            relatedDetail.BillingAddress_Id = null;
+                        }
+                        if (relatedDetail.ShippingAddress_Id == address.Id)
+                        {
+                            relatedDetail.ShippingAddress_Id = null;
+                        }
 
+                    }
+                    dataContext.Addresses.Remove(address);
+                    dataContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

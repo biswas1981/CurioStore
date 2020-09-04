@@ -166,6 +166,24 @@ namespace BrownBagService.Business.Implementation
                 throw;
             }
         }
+        public bool DeleteAddress(string deviceNo, int id)
+        {
+            try
+            {
+                using (var dataContract = new CustomerAttributeContract())
+                {
+                    if (id>0)
+                    {
+                        return dataContract.DeleteAddress(deviceNo, id);
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
     }
 }

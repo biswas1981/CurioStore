@@ -18,5 +18,6 @@ namespace BrownBagService.Business.Interfaces
         bool CustomerLogOff(string deviceId);
         bool SaveBillingAddress(CustomerBillingAddress customerBillingAddress, string deviceNo);
         List<CustomerAddressDetails> GetAddresses(string deviceNo);
+        bool DeleteAddress(string deviceNo, int id);
     }
 }

@@ -474,7 +474,7 @@ namespace BrownBagService.DataAccess.DataContract
                                     RevisedPrice = 0
                                 };
                                 dataContext.ShoppingCartItems.Add(cartItem);
-                                return dataContext.SaveChanges() > 0 ? true: false;
+                                return dataContext.SaveChanges() > 0 ? true : false;
                             }
                             else
                             {
@@ -535,7 +535,7 @@ namespace BrownBagService.DataAccess.DataContract
             }
         }
 
-        public CartItemSummary ShowCartItems(string deviceNumber,  string cuponCode)
+        public CartItemSummary ShowCartItems(string deviceNumber, string cuponCode)
         {
             try
             {
@@ -575,7 +575,7 @@ namespace BrownBagService.DataAccess.DataContract
                             return new CartItemSummary
                             {
                                 CartItems = items,
-                                CartCalculation = CalculateCartPrice(items, userInfo.RefCustomerGuid.Value, dataContext)
+                                CartCalculation = CalculateCartPrice(items, cuponCode, userInfo.RefCustomerGuid.Value, dataContext)
                             };
                         }
                         else
@@ -610,7 +610,7 @@ namespace BrownBagService.DataAccess.DataContract
             return IsExclusiveUser;
         }
 
-        private CartCalculationModel CalculateCartPrice(List<CartItemDetails> items, Guid customerId, BrownBagDataEntities dataContext)
+        private CartCalculationModel CalculateCartPrice(List<CartItemDetails> items, string cuponCode, Guid customerId, BrownBagDataEntities dataContext)
         {
             var taxHead = dataContext.TaxCategories.Where(x => x.IsActive.Value == 1).Select(s => new TaxComponant
             {
@@ -619,13 +619,13 @@ namespace BrownBagService.DataAccess.DataContract
                 TaxPercentage = s.Percentage ?? 0
             }).ToList();
             var shippingValueRate = 0.05M;
-            var subTotalPrice = items.Sum(s => s.Price);
+            var subTotalPrice = items.Where(a => a.Stock > 0).Sum(s => s.Price);
             var totalTax = taxHead.Sum(s => (s.TaxPercentage / 100) * subTotalPrice);
             var shippingValue = subTotalPrice * shippingValueRate;
-            var discount = 0;
+            var discount = GetDiscountValue(items, customerId.ToString(), cuponCode, dataContext);
             var calculation = new CartCalculationModel
             {
-                Discount = 0,
+                Discount = discount,
                 SubTotal = subTotalPrice,
                 TaxHeads = taxHead,
                 TaxTotal = totalTax,
@@ -635,7 +635,17 @@ namespace BrownBagService.DataAccess.DataContract
             return calculation;
         }
 
-
+        private decimal GetDiscountValue(List<CartItemDetails> items, string customerId, string cuponCode, BrownBagDataEntities dataContext)
+        {
+            var discountItems = dataContext.Coupons
+                .Where(a =>
+                a.Coupon1 == cuponCode
+                && a.CustomerGUID == customerId
+                && (a.ProductID == null || items.Where(w => w.Stock > 0).Any(b => b.ProductId == a.ProductID)))
+                .Select(s => new { ItemId = s.ProductID, DiscountValue = s.CouponValue ?? 0 }).ToList();
+            var totalDiscountValue = (discountItems != null && discountItems.Count() > 0) ? discountItems.Sum(s => s.DiscountValue) : 0;
+            return totalDiscountValue;
+        }
 
     }
 }

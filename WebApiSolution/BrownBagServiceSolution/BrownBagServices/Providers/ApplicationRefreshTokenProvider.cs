@@ -27,7 +27,8 @@ namespace BrownBagServices.Providers
             var refreshTokenProperties = new AuthenticationProperties(context.Ticket.Properties.Dictionary)
             {
                 IssuedUtc = context.Ticket.Properties.IssuedUtc,
-                ExpiresUtc = DateTime.UtcNow.AddDays(365)                                           
+                ExpiresUtc = DateTime.UtcNow.AddDays(365)
+                 
             };
             
 
@@ -55,6 +56,7 @@ namespace BrownBagServices.Providers
             AuthenticationTicket ticket;
             if (_refreshTokens.TryRemove(context.Token, out ticket))
             {
+                //ticket.Properties.ExpiresUtc = DateTime.UtcNow.AddMinutes(30);
                 context.SetTicket(ticket);
             }
         }

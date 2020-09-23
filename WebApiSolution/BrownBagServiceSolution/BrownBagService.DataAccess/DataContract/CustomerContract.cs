@@ -75,6 +75,7 @@ namespace BrownBagService.DataAccess.DataContract
                         customerSummary.CustomerEmail = otherData.Customer_Email ?? "";
                         customerSummary.CustomerContactNumber = otherData.Customer_Phone ?? "";
                         customerSummary.CustomerId = customerData.FirstOrDefault().CustomerGuid.Value;
+                        customerSummary.IsExclusiveUser = (customerData.FirstOrDefault().IsSystemAccount ?? 0) > 0 ? true : false;
                     }
                     else
                     {

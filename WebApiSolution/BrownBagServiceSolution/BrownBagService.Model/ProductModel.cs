@@ -23,7 +23,7 @@ namespace BrownBagService.Model
         public int ManufacturerId { get; set; }
         public int ArtistId { get; set; }
         public int VendorId { get; set; }
-
+        public bool IsExclusive { get; set; }
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
         public decimal Price { get; set; }

@@ -45,6 +45,7 @@ namespace BrownBagService.DataAccess.DataContract
                              ShortDescription = s.ShortDescription ?? "",
                              Discount = s.Discount ?? 0,
                              Stock = s.Stock ?? 0,
+                             IsExclusive = (s.IsExclusive ?? 0) == 1 ? true : false,
                              Price = (currencyTypeName == CurrencyTypeName.INR) ? s.CP_INR ?? 0 : (currencyTypeName == CurrencyTypeName.USD) ? s.CP_USD ?? 0 : (currencyTypeName == CurrencyTypeName.EURO) ? s.CP_Euro ?? 0 : s.CP_GBP ?? 0,
                              ProductImages = dataContext.ProductImages.Where(x => x.ProductID == s.Id).Select(s1 => new Model.ProductImage
                              {
